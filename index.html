@@ -38,16 +38,10 @@
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .card { border: 1px solid var(--hb-border); border-radius: 12px; padding: 25px; margin-bottom: 25px; background: white; }
         .dark .card { background-color: var(--hb-dark-card); border-color: var(--hb-dark-border); color: var(--hb-dark-text); }
-        .pitch-box { background: #fff7f0; border-left: 5px solid #E65A28; padding: 20px; margin: 15px 0; border-radius: 0 8px 8px 0; color: #003366; }
-        .dark .pitch-box { background: rgba(230, 90, 40, 0.05); color: #ccd6f6; }
-        .btn-dash { display: inline-flex; align-items: center; background: #003366; color: white !important; padding: 10px 18px; border-radius: 6px; font-weight: 700; font-size: 0.75rem; text-transform: uppercase; transition: 0.3s; margin: 5px 0; }
-        .btn-dash:hover { background: #E65A28; transform: translateY(-2px); }
-        .dark .btn-dash { background-color: #1a73e8; }
-        .proc-box { background: #f8fafc; border: 1px solid var(--hb-border); padding: 20px; border-radius: 8px; font-size: 0.85rem; margin: 10px 0; }
-        .dark .proc-box { background-color: rgba(255,255,255,0.02); border-color: var(--hb-dark-border); }
         .theme-toggle { position: fixed; top: 20px; right: 20px; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 1000; background: #003366; color: white; }
         .dark .theme-toggle { background: #f1c40f; color: #003366; }
-        .important-red { color: #dc2626; font-weight: 700; border: 2px solid #dc2626; padding: 15px; border-radius: 8px; margin: 15px 0; }
+        .img-placeholder { background: #f1f5f9; border: 2px dashed #cbd5e1; border-radius: 8px; padding: 20px; text-align: center; color: #64748b; font-size: 0.7rem; margin: 10px 0; }
+        .dark .img-placeholder { background: #1e293b; border-color: #334155; }
     </style>
 </head>
 <body class="bg-white text-hb-blue dark:bg-hb-dark-bg dark:text-hb-dark-text">
@@ -58,18 +52,18 @@
     </div>
 
     <aside class="sidebar bg-white dark:bg-hb-dark-card">
-        <div class="p-8 border-b dark:border-hb-dark-border">
+        <div class="p-8 border-b dark:border-hb-dark-border text-center">
             <img src="Logo HB_v1_Bleu.jpg" alt="Holland Bikes" class="w-full mb-2 dark:hidden">
             <img src="Logo HB_v1_Blanc.png" alt="Holland Bikes" class="w-full mb-2 hidden dark:block">
-            <p class="text-[9px] font-black tracking-widest text-center opacity-50 uppercase">Services Training 2026</p>
+            <p class="text-[9px] font-black tracking-widest opacity-50 uppercase">Services Training 2026</p>
         </div>
         
         <nav class="nav-container">
             <div class="px-6 py-3 text-[10px] font-black text-slate-400 uppercase tracking-widest">1. Financement</div>
-            <div class="nav-link active" onclick="showTab('lld')"><i class="fas fa-file-invoice-dollar mr-3"></i> LLD GreenLeaze</div>
+            <div class="nav-link" onclick="showTab('lld')"><i class="fas fa-file-invoice-dollar mr-3"></i> LLD GreenLeaze</div>
             
             <div class="px-6 py-3 text-[10px] font-black text-slate-400 uppercase tracking-widest">2. Atelier</div>
-            <div class="nav-link" onclick="showTab('abo')"><i class="fas fa-tools mr-3"></i> Abonnement Entretien</div>
+            <div class="nav-link active" onclick="showTab('abo')"><i class="fas fa-tools mr-3"></i> Abonnement Entretien</div>
             
             <div class="px-6 py-3 text-[10px] font-black text-slate-400 uppercase tracking-widest">3. Protection</div>
             <div class="nav-link" onclick="showTab('assu')"><i class="fas fa-shield-alt mr-3"></i> Assurances Laka</div>
@@ -83,132 +77,163 @@
 
     <main class="main-content">
 
-        <section id="lld" class="section-page active">
+        <section id="lld" class="section-page">
             <h2 class="text-3xl font-black mb-6">Location Longue Durée (LLD)</h2>
-
             <div class="card bg-blue-50 dark:bg-opacity-10 border-l-8 border-hb-blue">
                 <h3 class="text-xl font-extrabold text-hb-blue dark:text-hb-dark-text mb-3">GreenLeaze</h3>
-                <p class="text-sm leading-relaxed">
-                    GreenLeaze est notre prestataire pour la LLD. Lorsqu’un client est intéressé par une LLD, GreenLeaze nous achète le vélo, et le loue au client pour un prix mensuel prédéfini. Le contrat est entre le client et GreenLeaze. GreenLeaze remplace MyPangee. Par rapport à MyPangee, Greenleaze est légèrement moins cher pour les clients, mais surtout beaucoup plus rapide à mettre en place (souscription en ligne en quelques minutes et vérification des fonds via open banking), et est plus simple à utiliser, directement depuis un ordinateur ou un téléphone.
-                </p>
+                <p class="text-sm leading-relaxed">GreenLeaze est notre prestataire pour la LLD. Lorsqu’un client est intéressé par une LLD, GreenLeaze nous achète le vélo, et le loue au client pour un prix mensuel prédéfini. Le contrat est entre le client et GreenLeaze. GreenLeaze remplace MyPangee. Par rapport à MyPangee, Greenleaze est légèrement moins cher pour les clients, mais surtout beaucoup plus rapide à mettre en place (souscription en ligne en quelques minutes et vérification des fonds via open banking), et est plus simple à utiliser, directement depuis un ordinateur ou un téléphone.</p>
                 <a href="https://greenleaze.notion.site/GreenLeaze-infos-savoir-1aeb77989c87800994d9e4fc96bd1ba6" target="_blank" class="mt-4 inline-block text-hb-orange font-bold text-sm hover:underline">
                     <i class="fas fa-question-circle mr-1"></i> FAQ Fonctionnement GreenLeaze
                 </a>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-8">
-                <div class="p-5 border rounded-xl dark:border-hb-dark-border bg-white dark:bg-hb-dark-card shadow-sm">
-                    <h4 class="font-black text-xs text-hb-orange mb-3">Ce que propose GreenLeaze :</h4>
-                    <ul class="text-[11px] space-y-2 list-disc ml-4">
-                        <li>Location longue durée sans option d'achat</li>
-                        <li>Particuliers et entreprises</li>
-                        <li>Frais fixes incluant assurance “Vol/Casse” et entretien en option</li>
-                    </ul>
+            <div class="card border-t-4 border-hb-orange mt-6">
+                <h3 class="font-black text-sm mb-4">Calculateur Commission LLD</h3>
+                <div class="grid grid-cols-2 gap-4">
+                    <input type="number" id="c_mois" placeholder="Nombre de mois" class="p-2 border rounded dark:bg-hb-dark-card">
+                    <input type="number" id="c_loyer" placeholder="Loyer mensuel TTC" class="p-2 border rounded dark:bg-hb-dark-card">
                 </div>
-                <div class="p-5 border rounded-xl dark:border-hb-dark-border bg-white dark:bg-hb-dark-card shadow-sm">
-                    <h4 class="font-black text-xs text-hb-orange mb-3">Avantages client :</h4>
-                    <ul class="text-[11px] space-y-2 list-disc ml-4">
-                        <li>Accessibilité (mensualités vs achat comptant)</li>
-                        <li>Sérénité (service tout compris)</li>
-                        <li>Changement de vélo régulier</li>
-                        <li>Option d'achat fin de contrat au prix marché</li>
-                    </ul>
-                </div>
-                <div class="p-5 border rounded-xl dark:border-hb-dark-border bg-white dark:bg-hb-dark-card shadow-sm">
-                    <h4 class="font-black text-xs text-hb-orange mb-3">Comment le proposer ?</h4>
-                    <p class="text-[11px]">Évaluer les besoins (Bike as a Service, gros rouleur). Expliquer le leasing : même si c'est plus cher qu'un achat comptant, cela répond au besoin de flexibilité et tranquillité clé en main.</p>
-                </div>
-            </div>
-
-            <div class="card">
-                <h3 class="text-lg font-black mb-4">Argumentaire de vente</h3>
-                <details class="group border-b dark:border-hb-dark-border pb-4 mb-4">
-                    <summary class="list-none flex justify-between items-center cursor-pointer font-bold text-sm text-hb-blue dark:text-hb-dark-text">
-                        Comment le vendre à : UN PARTICULIER
-                        <span class="group-open:rotate-180 transition-transform"><i class="fas fa-chevron-down"></i></span>
-                    </summary>
-                    <div class="mt-4 text-xs space-y-2 pl-4 border-l-2 border-hb-orange">
-                        <li>Simple et rapide : souscription en ~5 min, sans paperasse</li>
-                        <li>Package tout compris avec entretien, assistance, casse/vol</li>
-                        <li>Engagement au choix : 12 / 24 / 36 mois</li>
-                        <li>Éligible Forfait Mobilités Durables employeur</li>
-                    </div>
-                </details>
-                <details class="group">
-                    <summary class="list-none flex justify-between items-center cursor-pointer font-bold text-sm text-hb-blue dark:text-hb-dark-text">
-                        Comment le vendre à : UN PASSIONNÉ
-                        <span class="group-open:rotate-180 transition-transform"><i class="fas fa-chevron-down"></i></span>
-                    </summary>
-                    <div class="mt-4 text-xs space-y-2 pl-4 border-l-2 border-hb-orange">
-                        <li>Évolutif : changez de monture selon vos envies / pratiques</li>
-                        <li>Sérénité : services complets selon la boutique</li>
-                        <li>Zéro tracas technique</li>
-                    </div>
-                </details>
-            </div>
-
-            <div class="important-red">
-                <h4 class="text-xs uppercase mb-2">Attention - Forfaits Révision</h4>
-                <div class="grid grid-cols-3 gap-2 text-center text-[10px] mb-3">
-                    <div class="p-2 bg-slate-100 dark:bg-slate-800 rounded">Musculaire: 6,50€/m</div>
-                    <div class="p-2 bg-slate-100 dark:bg-slate-800 rounded">Electrique: 8€/m</div>
-                    <div class="p-2 bg-slate-100 dark:bg-slate-800 rounded">Cargo: 10,50€/m</div>
-                </div>
-                <p class="text-xs">IMPORTANT : Les révisions ne sont pas intégrées dans le loyer GreenLeaze. L’atelier doit facturer séparément directement à GreenLeaze. Accessoires : facturer à part (-10% code promo).</p>
-            </div>
-
-            <div class="card">
-                <h3 class="font-black text-sm mb-4">Procédure Dashboard GreenLeaze</h3>
-                <a href="https://dashboard.greenleaze.com/shop/customers" target="_blank" class="btn-dash mb-4">Accéder au Dashboard</a>
-                <ul class="text-xs space-y-2 list-decimal ml-4">
-                    <li>Simulation : Saisir montant TTC total + durée. Ajouter entretien (recommandé).</li>
-                    <li>Infos client : Remplir coordonnées. Client reçoit lien IBAN/justificatifs.</li>
-                    <li>Validation : Attendre statut "Signé". Signature électronique client obligatoire.</li>
-                    <li>Livraison : Cliquer "Livrer le matériel" pour déclencher paiement (code ou PV numérique).</li>
-                </ul>
-            </div>
-
-            <div class="card border-t-4 border-hb-orange">
-                <h3 class="font-black text-sm mb-4">Procédure CycleSoftware</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="text-xs space-y-2">
-                        <li>Créer fiche client (utilisateur).</li>
-                        <li>Adresse facturation : Greenleaze SAS, 21 boulevard de Beauséjour, 75016, Paris (RCS 984942573).</li>
-                        <li>Facture au nom de GreenLeaze. Mentionner N° Vélopass (mail: identification@greenleaze.com).</li>
-                        <li>Envoyer PDF : compta+hollandbikes@greenleaze.com</li>
-                    </div>
-                    <div class="bg-slate-50 dark:bg-slate-900 p-4 rounded border dark:border-hb-dark-border">
-                        <p class="text-[10px] font-bold mb-2">CALCULATEUR COMMISSION (2%)</p>
-                        <input type="number" id="c_mois" placeholder="Mois" class="w-full p-2 mb-2 text-xs border dark:bg-hb-dark-card">
-                        <input type="number" id="c_loyer" placeholder="Loyer TTC" class="w-full p-2 mb-2 text-xs border dark:bg-hb-dark-card">
-                        <p class="text-xl font-black text-hb-orange" id="c_res">0.00 €</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="p-4 bg-slate-100 dark:bg-white/5 rounded mt-4 text-[11px]">
-                <p><strong>Pourquoi avoir choisi GreenLeaze ?</strong> Nous avons décidé de changer car MyPangee demandait des processus d'inscription plus longs et plus complexes. Clients Pangee : les orienter vers la page de retour dédiée.</p>
+                <p class="text-2xl font-black text-hb-orange mt-4" id="c_res">0.00 €</p>
             </div>
         </section>
 
-        <section id="abo" class="section-page">
+        <section id="abo" class="section-page active">
             <h2 class="text-3xl font-black mb-6">Abonnement Entretien</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                <div class="p-6 border rounded-xl text-center bg-white dark:bg-hb-dark-card border-hb-blue shadow-lg">
+                    <i class="fas fa-bicycle text-hb-blue text-2xl mb-2"></i>
+                    <h4 class="font-black text-xs uppercase opacity-70">Vélo classique</h4>
+                    <p class="text-2xl font-black text-hb-blue mt-1">15 €<span class="text-xs">/mois</span></p>
+                </div>
+                <div class="p-6 border rounded-xl text-center bg-white dark:bg-hb-dark-card border-hb-orange shadow-lg scale-105 ring-2 ring-hb-orange/20">
+                    <i class="fas fa-bolt text-hb-orange text-2xl mb-2"></i>
+                    <h4 class="font-black text-xs uppercase opacity-70">Vélo électrique</h4>
+                    <p class="text-2xl font-black text-hb-orange mt-1">25 €<span class="text-xs">/mois</span></p>
+                </div>
+                <div class="p-6 border rounded-xl text-center bg-white dark:bg-hb-dark-card border-hb-blue shadow-lg">
+                    <i class="fas fa-shuttle-van text-hb-blue text-2xl mb-2"></i>
+                    <h4 class="font-black text-xs uppercase opacity-70">Cargo / Longtail</h4>
+                    <p class="text-2xl font-black text-hb-blue mt-1">25 €<span class="text-xs">/mois</span></p>
+                </div>
+            </div>
+
             <div class="card">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs mb-6">
-                    <div class="p-4 bg-slate-50 dark:bg-white/5 rounded">
-                        <h4 class="font-bold mb-2">Tarifs Mensuels</h4>
-                        <li>Vélo classique : 15 €</li>
-                        <li>VAE / Cargo / Longtail : 25 €</li>
+                <h3 class="text-lg font-black mb-4 border-b pb-2"><i class="fas fa-check-circle mr-2 text-green-500"></i>Prestations incluses (Identiques pour les 3 offres)</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3 text-sm">
+                    <div class="flex items-start"><i class="fas fa-wrench mt-1 mr-3 text-hb-orange"></i><span>Main-d’œuvre illimitée</span></div>
+                    <div class="flex items-start"><i class="fas fa-calendar-check mt-1 mr-3 text-hb-orange"></i><span>Deux révisions par an</span></div>
+                    <div class="flex items-start"><i class="fas fa-tools mt-1 mr-3 text-hb-orange"></i><span>Réparation express crevaisons (chambre + MO) illimitée</span></div>
+                    <div class="flex items-start"><i class="fas fa-sync mt-1 mr-3 text-hb-orange"></i><span>Changement illimité pièces d'usure listées (patins, câbles, gaines...)</span></div>
+                    <div class="flex items-start"><i class="fas fa-clock mt-1 mr-3 text-hb-orange"></i><span>Prise de RDV prioritaire (sous 7 jours ouvrés)</span></div>
+                    <div class="flex items-start"><i class="fas fa-key mt-1 mr-3 text-hb-orange"></i><span>Vélo de courtoisie pendant l’intervention</span></div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div class="card bg-slate-50 dark:bg-white/5 border-slate-200">
+                    <h4 class="font-black text-xs uppercase mb-3 text-hb-blue dark:text-hb-dark-text">Conditions & Éligibilité</h4>
+                    <ul class="text-[11px] space-y-2">
+                        <li><i class="fas fa-tag mr-2"></i>Rattaché à un <strong>vélo unique</strong></li>
+                        <li><i class="fas fa-history mr-2"></i>Engagement mini <strong>6 mois</strong></li>
+                        <li><i class="fas fa-check mr-2"></i>Musculaires, VAE (<10 ans), Cargos, Pliants, VTT/VTC</li>
+                        <li class="text-red-500"><i class="fas fa-times mr-2"></i>Exclusions : Speed-bikes, usage pro/compétition, vélos >10 ans</li>
+                    </ul>
+                </div>
+                <div class="card bg-hb-blue/5 border-hb-blue/20">
+                    <h4 class="font-black text-xs uppercase mb-3 text-hb-blue dark:text-hb-dark-text">Objectif du service</h4>
+                    <p class="text-xs leading-relaxed italic">
+                        "Offrir aux clients un service premium de tranquillité : entretien régulier, absence de frais imprévus, priorité atelier, et allongement de la durée de vie du vélo."
+                    </p>
+                </div>
+            </div>
+
+            <div class="card">
+                <details class="group mb-4">
+                    <summary class="list-none flex justify-between items-center cursor-pointer font-black text-sm p-3 bg-slate-100 dark:bg-slate-800 rounded-lg">
+                        RÔLES ET RESPONSABILITÉS (Magasin & Atelier)
+                        <span class="group-open:rotate-180 transition-transform"><i class="fas fa-chevron-down"></i></span>
+                    </summary>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4 p-2">
+                        <div>
+                            <h5 class="font-bold text-hb-orange text-xs mb-2">Vendeurs Magasins</h5>
+                            <ul class="text-[10px] space-y-2 list-disc ml-4">
+                                <li>Proposer l'abo lors de la <strong>révision offerte 3 mois</strong>.</li>
+                                <li>Vérifier l’éligibilité (âge, état, usage).</li>
+                                <li>Expliquer l'engagement de 6 mois mini.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 class="font-bold text-hb-orange text-xs mb-2">Ateliers / Techniciens</h5>
+                            <ul class="text-[10px] space-y-2 list-disc ml-4">
+                                <li><strong>Vérifier Stripe</strong> avant travaux (Doute ? Appel Bruno/Amélie).</li>
+                                <li>Facturer à <strong>0€</strong> la MO et les pièces d’usure incluses.</li>
+                                <li>Tenir à jour l'historique sur CycleSoftware.</li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="p-4 bg-slate-50 dark:bg-white/5 rounded">
-                        <h4 class="font-bold mb-2">Prestations Incluses</h4>
-                        <p>Main-d’œuvre illimitée, 2 révisions/an, crevaison express (pièce incluse), vélo de courtoisie, priorité atelier (< 7j), pièces d'usure listées incluses.</p>
+                </details>
+            </div>
+
+            <div class="card">
+                <h3 class="text-xl font-black mb-6 uppercase border-b-2 border-hb-orange pb-2">Processus de souscription Stripe</h3>
+                
+                <div class="space-y-8">
+                    <div class="relative pl-8 border-l-2 border-hb-blue">
+                        <span class="absolute left-[-11px] top-0 bg-hb-blue text-white w-5 h-5 rounded-full text-xs flex items-center justify-center font-bold">1</span>
+                        <h4 class="font-bold text-sm">Inscription du client</h4>
+                        <p class="text-xs opacity-80 mb-3">Présentez le document avec les 3 QR codes (Ville, Électrique, Cargo).</p>
+                        <div class="img-placeholder"><i class="fas fa-qrcode mr-2"></i> Image : QR codes abo Stripe.png</div>
+                        <p class="text-[10px] mt-4 italic">Alternative via Dashboard (Payment Links) :</p>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-2 mt-2">
+                            <div class="img-placeholder text-[8px]">Image : Payment links Stripe.png</div>
+                            <div class="img-placeholder text-[8px]">Image : bouton qr code.png</div>
+                            <div class="img-placeholder text-[8px]">Image : afficher QR code.png</div>
+                        </div>
+                    </div>
+
+                    <div class="relative pl-8 border-l-2 border-hb-blue">
+                        <span class="absolute left-[-11px] top-0 bg-hb-blue text-white w-5 h-5 rounded-full text-xs flex items-center justify-center font-bold">2</span>
+                        <h4 class="font-bold text-sm">Vérification de l'abonnement</h4>
+                        <p class="text-xs opacity-80 mb-3">Connectez-vous à <a href="https://dashboard.stripe.com/acct_1IG0N5BvkIBC2Tvu/dashboard" target="_blank" class="text-hb-orange underline">Stripe Dashboard</a>.</p>
+                        <div class="img-placeholder"><i class="fas fa-users mr-2"></i> Image : liste clients abonnés.png</div>
+                        <p class="text-[10px] mt-2">Cherchez par <strong>Nom, Email ou Téléphone</strong> dans la barre de recherche en haut.</p>
                     </div>
                 </div>
-                <div class="proc-box">
-                    <h4 class="font-bold text-sm mb-2 text-hb-orange">Inscription via Stripe</h4>
-                    <p class="text-xs mb-4">Scanner le QR Code (Ville, Élec ou Cargo) -> Client remplit Coordonnées + Vélo + IBAN. <br>Engagement 6 mois minimum.</p>
-                    <a href="https://dashboard.stripe.com/acct_1IG0N5BvkIBC2Tvu/dashboard" target="_blank" class="btn-dash">Chercher un client Stripe</a>
+            </div>
+
+            <div class="mt-8">
+                <h3 class="text-center font-black text-lg mb-6">POURQUOI S'ABONNER ? (Argumentaire Commercial)</h3>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    <div class="p-4 bg-white dark:bg-hb-dark-card border rounded shadow-sm text-center flex flex-col items-center">
+                        <div class="w-10 h-10 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mb-2"><i class="fas fa-spa text-hb-blue"></i></div>
+                        <h5 class="text-[10px] font-black uppercase mb-1">Tranquillité</h5>
+                        <p class="text-[9px]">Le vélo est toujours prêt à rouler.</p>
+                    </div>
+                    <div class="p-4 bg-white dark:bg-hb-dark-card border rounded shadow-sm text-center flex flex-col items-center">
+                        <div class="w-10 h-10 bg-orange-100 dark:bg-orange-900 rounded-full flex items-center justify-center mb-2"><i class="fas fa-wallet text-hb-orange"></i></div>
+                        <h5 class="text-[10px] font-black uppercase mb-1">Coûts Maîtrisés</h5>
+                        <p class="text-[9px]">Fini les mauvaises surprises.</p>
+                    </div>
+                    <div class="p-4 bg-white dark:bg-hb-dark-card border rounded shadow-sm text-center flex flex-col items-center">
+                        <div class="w-10 h-10 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mb-2"><i class="fas fa-fighter-jet text-green-600"></i></div>
+                        <h5 class="text-[10px] font-black uppercase mb-1">Priorité</h5>
+                        <p class="text-[9px]">Pas d’attente prolongée en atelier.</p>
+                    </div>
+                    <div class="p-4 bg-white dark:bg-hb-dark-card border rounded shadow-sm text-center flex flex-col items-center">
+                        <div class="w-10 h-10 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mb-2"><i class="fas fa-key text-hb-blue"></i></div>
+                        <h5 class="text-[10px] font-black uppercase mb-1">Courtoisie</h5>
+                        <p class="text-[9px]">Un vélo de prêt inclus.</p>
+                    </div>
+                    <div class="p-4 bg-white dark:bg-hb-dark-card border rounded shadow-sm text-center flex flex-col items-center">
+                        <div class="w-10 h-10 bg-slate-100 dark:bg-slate-700 rounded-full flex items-center justify-center mb-2"><i class="fas fa-city text-slate-600"></i></div>
+                        <h5 class="text-[10px] font-black uppercase mb-1">Urbains / Familles</h5>
+                        <p class="text-[9px]">Parfait pour le vélotaf intensif.</p>
+                    </div>
+                    <div class="p-4 bg-white dark:bg-hb-dark-card border rounded shadow-sm text-center flex flex-col items-center ring-2 ring-hb-orange ring-offset-2">
+                        <div class="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center mb-2"><i class="fas fa-euro-sign text-white"></i></div>
+                        <h5 class="text-[10px] font-black uppercase mb-1">FMD</h5>
+                        <p class="text-[9px] font-bold">Éligible Forfait Mobilités Durables.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -216,82 +241,30 @@
         <section id="assu" class="section-page">
             <h2 class="text-3xl font-black mb-6">Assurance</h2>
             <div class="card border-l-8 border-green-500">
-                <h3 class="font-bold text-sm">3.1 Assurance 4 mois offerte</h3>
-                <p class="text-xs mt-2">Automatique sur tout achat neuf. Couvre uniquement le <strong>VOL</strong>. Franchise 10% (min 50€). Déclaration sous 2j ouvrés. <br><strong>Condition :</strong> Antivol agréé avec facture d'achat.</p>
-            </div>
-            <div class="card border-l-8 border-hb-blue">
-                <h3 class="font-bold text-sm">3.2 Extension Prépayée (Magasin)</h3>
-                <p class="text-xs mt-2 italic">Facturer 7,5% de la valeur (remise 20% sur la 2ème année).</p>
-                <div class="grid grid-cols-2 gap-2 mt-3 text-[10px]">
-                    <div class="p-2 border rounded">Code 1 an: 2181007168585</div>
-                    <div class="p-2 border rounded">Code 2 ans: 2181007168622</div>
-                </div>
-                <p class="text-[10px] mt-2 text-red-600 font-bold">NE PAS COCHER LA CASE ASSURANCE DANS CS.</p>
-            </div>
-            <div class="card border-l-8 border-hb-orange">
-                <h3 class="font-bold text-sm">3.3 Option Mensuelle Laka</h3>
-                <p class="text-xs mt-2">Si pas d'extension : <strong>COCHEREZ LA CASE ASSURANCE DANS CS</strong>. Laka gère la prospection par mail pour une offre flexible sans franchise vol.</p>
+                <h3 class="font-bold text-sm">Laka - 4 mois offerts</h3>
+                <p class="text-xs mt-2">Automatique sur tout achat neuf. Couvre le VOL uniquement. Antivol agréé obligatoire.</p>
             </div>
         </section>
 
         <section id="part" class="section-page">
-            <h2 class="text-3xl font-black mb-6">Ventes via Partenaires</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="card">
-                    <h4 class="font-bold text-sm mb-3">Zenride / Lease a Bike</h4>
-                    <p class="text-xs">Le client est Zenride/Lease a Bike. Établir devis au nom du partenaire. Prix public complet (pas de remise). Attendre le PO avant livraison.</p>
-                </div>
-                <div class="card">
-                    <h4 class="font-bold text-sm mb-3">Cartes Mobilités</h4>
-                    <p class="text-xs">Edenred, Betterway, SNCF. Règlement TPE direct. Facturer au nom du <strong>particulier</strong>.</p>
-                </div>
+            <h2 class="text-3xl font-black mb-6">Partenaires Mobilité</h2>
+            <div class="card">
+                <p class="text-sm">Zenride, Lease a Bike, BeeToGreen. Consultez les dashboards respectifs pour valider les PO avant livraison.</p>
             </div>
         </section>
 
         <section id="rep" class="section-page">
             <h2 class="text-3xl font-black mb-6">Reprises Vélos</h2>
             <div class="card">
-                <div class="flex gap-4">
-                    <div class="w-1/2">
-                        <h4 class="font-bold text-sm mb-2">Électriques (Upway)</h4>
-                        <p class="text-xs mb-3">Cotation directe via le portail Upway pour les reprises liées à une vente neuve.</p>
-                        <a href="https://upway.fr/pages/reprise-magasin" target="_blank" class="btn-dash">Portail Upway</a>
-                    </div>
-                    <div class="w-1/2">
-                        <h4 class="font-bold text-sm mb-2">Mécaniques</h4>
-                        <p class="text-xs mb-3">Calculateur interne. Validation EBSC obligatoire avant envoi pour reconditionnement.</p>
-                        <button class="btn-dash bg-slate-500">Calculateur Interne</button>
-                    </div>
-                </div>
+                <p class="text-sm">Utilisez le portail Upway B2B pour les VAE ou le calculateur interne Holland Bikes pour le musculaire.</p>
             </div>
         </section>
 
         <section id="cc" class="section-page">
             <h2 class="text-3xl font-black mb-6">Click & Collect</h2>
             <div class="card border-l-8 border-yellow-400">
-                <div class="flex justify-between items-start mb-4">
-                    <h3 class="text-xl font-bold italic uppercase">Véligo</h3>
-                    <a href="https://score-veligo.powerappsportals.com/fr-FR/signin?ReturnUrl=%2Ffr-FR%2F" target="_blank" class="btn-dash bg-yellow-500">Dashboard Véligo</a>
-                </div>
-                <p class="text-xs mb-4">Point relais. Réception et stockage sécurisé. Remise à valider en temps réel sur le portail.</p>
-                <div class="p-3 bg-red-50 dark:bg-red-900/10 rounded border border-red-200 text-[10px] mb-4">
-                    <strong>ATTENTION :</strong> Aucune intervention/réparation n'est autorisée sur les vélos Véligo.
-                </div>
-                <div class="pitch-box text-xs">
-                    <strong>Conversion :</strong> Casque + Antivol offerts pour tout achat suite à loc Véligo.
-                </div>
-                <div class="flex gap-2 mt-4">
-                    <button class="btn-dash bg-slate-500 text-[10px]">PDF Portail Opérationnel</button>
-                    <button class="btn-dash bg-slate-500 text-[10px]">PDF Synthèse Service</button>
-                </div>
-            </div>
-
-            <div class="card border-l-8 border-green-500 mt-6">
-                <div class="flex justify-between items-start mb-4">
-                    <h3 class="text-xl font-bold italic uppercase">Upway</h3>
-                    <a href="https://b2b.upway.app/" target="_blank" class="btn-dash bg-green-600">Dashboard Upway</a>
-                </div>
-                <p class="text-xs">Forfait 42€ : Déballage + Mise en service + Explications client. <br><strong>Vendre l'Abonnement Entretien</strong> et créer fiche client via révision offerte à 3 mois.</p>
+                <h3 class="font-bold">Véligo / Upway</h3>
+                <p class="text-xs">Réception, stockage et remise client. Validation immédiate sur les plateformes.</p>
             </div>
         </section>
 
@@ -313,20 +286,18 @@
 
         if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');
 
-        // Calculateur Commission LLD
-        const moisInput = document.getElementById('c_mois');
-        const loyerInput = document.getElementById('c_loyer');
-        const resOutput = document.getElementById('c_res');
+        // Calculateur LLD
+        const moisI = document.getElementById('c_mois');
+        const loyerI = document.getElementById('c_loyer');
+        const resO = document.getElementById('c_res');
 
-        function updateComm() {
-            const m = parseFloat(moisInput.value) || 0;
-            const l = parseFloat(loyerInput.value) || 0;
-            const comm = m * 0.02 * (l / 1.2);
-            resOutput.innerText = comm.toFixed(2) + " €";
+        function updateC() {
+            const m = parseFloat(moisI.value) || 0;
+            const l = parseFloat(loyerI.value) || 0;
+            resO.innerText = (m * 0.02 * (l / 1.2)).toFixed(2) + " €";
         }
-
-        moisInput.addEventListener('input', updateComm);
-        loyerInput.addEventListener('input', updateComm);
+        moisI.addEventListener('input', updateC);
+        loyerI.addEventListener('input', updateC);
     </script>
 </body>
 </html>
