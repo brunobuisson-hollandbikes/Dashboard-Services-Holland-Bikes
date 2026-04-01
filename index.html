@@ -29,7 +29,6 @@
         .dark .sidebar { background: #112240; border-right-color: #233554; }
         .main-content { margin-left: 300px; padding: 40px; max-width: 1400px; }
 
-        /* Nav principal */
         .nav-link { padding: 12px 20px; display: flex; align-items: center; cursor: pointer; font-weight: 700; font-size: 14px; color: #475569; transition: 0.2s; border-left: 4px solid transparent; text-transform: uppercase; letter-spacing: 0.03em; }
         .nav-link:hover { background: #f8fafc; color: #E65A28; }
         .nav-link.active { background: #eff6ff; color: #E65A28; border-left-color: #E65A28; }
@@ -37,7 +36,6 @@
         .dark .nav-link:hover { background: #1e293b; color: #E65A28; }
         .dark .nav-link.active { background: rgba(230, 90, 40, 0.1); }
 
-        /* Sous-nav */
         .sub-nav { display: none; background: #f8fafc; border-left: 4px solid #e2e8f0; }
         .dark .sub-nav { background: #0d1f3c; border-left-color: #233554; }
         .nav-link.active + .sub-nav { display: block; }
@@ -76,8 +74,19 @@
         .text-body { font-size: 1rem; line-height: 1.75; }
         .text-important { font-size: 1.1rem; font-weight: 600; }
 
-        /* Ancres invisibles pour les sous-sections */
         .anchor { display: block; position: relative; top: -80px; visibility: hidden; }
+
+        /* Option 1 assurance — mise en avant */
+        .option-featured {
+            transform: scale(1.02);
+            transform-origin: top center;
+            box-shadow: 0 20px 50px rgba(0, 51, 102, 0.18), 0 0 0 3px #003366;
+            position: relative;
+            z-index: 2;
+        }
+        .dark .option-featured {
+            box-shadow: 0 20px 50px rgba(79, 172, 254, 0.2), 0 0 0 3px #4facfe;
+        }
     </style>
 </head>
 <body class="bg-slate-50 dark:bg-hb-dark-bg text-slate-800 dark:text-hb-dark-text">
@@ -490,7 +499,7 @@
                     </li>
                     <li>Dans le menu de gauche, cliquez sur « Clients ».</li>
                 </ul>
-                <!-- Image réduite -->
+                <!-- ✅ CHANGE 1 : nom de fichier corrigé → liste clients abonnés.png -->
                 <img src="liste clients abonnés.png" alt="Liste clients abonnés" class="img-zoom w-full max-w-xl mx-auto shadow-xl border-4 border-slate-200" onclick="openModal(this.src)">
                 <p class="text-base mt-4 font-bold text-center bg-slate-100 dark:bg-slate-800 p-3 rounded-lg">Dans la barre de recherche (en haut), tapez le nom, le numéro de téléphone ou l'e-mail du client.</p>
             </div>
@@ -607,12 +616,18 @@
                 <p class="text-lg font-bold">À l'issue des 4 mois offerts, deux options sont proposées aux clients.</p>
             </div>
 
-            <div class="grid grid-cols-1 xl:grid-cols-2 gap-8 mb-10">
+            <!-- ✅ CHANGE 2 : Options côte à côte, Option 1 mise en avant -->
+            <div class="flex flex-col xl:flex-row gap-8 mb-10 items-start">
 
+                <!-- Option 1 — mise en avant -->
                 <span class="anchor" id="ass-extension"></span>
-                <div class="card shadow-2xl border-t-8 border-hb-blue relative overflow-hidden bg-white dark:bg-slate-900">
+                <div class="card shadow-2xl border-t-8 border-hb-blue relative overflow-hidden bg-white dark:bg-slate-900 option-featured xl:flex-[1.05]">
                     <div class="absolute top-0 right-0 bg-hb-blue text-white px-5 py-2 font-black text-base rounded-bl-xl shadow">MAGASIN</div>
-                    <h4 class="text-2xl font-black mb-6 text-hb-blue mt-5">Option 1 : Extension prépayée 1 an ou 2 ans</h4>
+                    <!-- Badge recommandé -->
+                    <div class="absolute top-0 left-0 bg-hb-orange text-white px-4 py-1 font-black text-sm rounded-br-xl shadow flex items-center gap-1">
+                        <i class="fas fa-star text-yellow-300"></i> RECOMMANDÉE
+                    </div>
+                    <h4 class="text-2xl font-black mb-6 text-hb-blue mt-8">Option 1 : Extension prépayée 1 an ou 2 ans</h4>
                     <div class="text-base space-y-4 text-body">
                         <p class="font-bold">Vous pouvez proposer aux clients une assurance Vol/Casse pour 1 ou 2 ans en complément des 4 mois offerts par Holland Bikes.</p>
                         <a href="https://holland-bikes-assurance.netlify.app/" target="_blank" class="btn-hb bg-hb-blue w-full text-center"><i class="fas fa-calculator mr-2"></i> Calculateur assurance</a>
@@ -665,8 +680,9 @@
                     </div>
                 </div>
 
+                <!-- Option 2 — en retrait -->
                 <span class="anchor" id="ass-laka"></span>
-                <div class="card shadow-2xl border-t-8 border-hb-orange relative overflow-hidden bg-white dark:bg-slate-900">
+                <div class="card shadow-xl border-t-8 border-hb-orange relative overflow-hidden bg-white dark:bg-slate-900 opacity-95 xl:flex-1 self-stretch">
                     <div class="absolute top-0 right-0 bg-hb-orange text-white px-5 py-2 font-black text-base rounded-bl-xl shadow">EN LIGNE</div>
                     <h4 class="text-2xl font-black mb-6 text-hb-orange mt-5">Option 2 : Assurance mensuelle Laka</h4>
                     <div class="text-base space-y-4 text-body">
@@ -707,6 +723,7 @@
                                     <p class="text-center font-black text-base mb-3 text-hb-blue">Jour de l'achat</p>
                                     <img src="jour de l_achat.png" alt="Email Jour J" class="img-zoom w-full shadow-md" onclick="openModal(this.src)">
                                 </div>
+                                <!-- ✅ CHANGE 3 : noms de fichiers images Laka corrigés -->
                                 <div class="w-full bg-slate-50 dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700">
                                     <p class="text-center font-black text-base mb-3 text-hb-blue">1 semaine après l'achat</p>
                                     <img src="1 semaine après achat.png" alt="Email S1" class="img-zoom w-full shadow-md" onclick="openModal(this.src)">
@@ -773,10 +790,64 @@
         <section id="partenaires" class="section-page">
             <h2 class="text-3xl font-black mb-10 text-hb-blue dark:text-white border-b-4 border-hb-orange inline-block pb-2">Partenaires de mobilités</h2>
 
-            <!-- Grille 2x2 -->
+            <!-- ✅ CHANGE 4 : Nouvelle disposition — Rangée 1 : BeeToGreen + Lease a Bike | Rangée 2 : Zenride + Cartes -->
             <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
 
-                <!-- Zenride -->
+                <!-- BeeToGreen — rangée 1, colonne 1 -->
+                <span class="anchor" id="part-bee"></span>
+                <div class="card p-8 border-l-8 border-green-500 shadow-xl">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 border-b-2 border-slate-100 dark:border-slate-700 pb-5 gap-4">
+                        <img src="Logo BeeToGreen.png" alt="Logo BeeToGreen" class="h-12 object-contain bg-white rounded p-1">
+                        <a href="https://app.beetogreen.com/login" target="_blank" class="btn-hb"><i class="fas fa-desktop mr-2"></i> Dashboard BeeToGreen</a>
+                    </div>
+                    <div class="text-base space-y-4 text-body">
+                        <p><strong>Présentation :</strong> BeeToGreen est un opérateur de solutions de mobilité durable. Les salariés peuvent acheter ou louer un vélo via leur entreprise.</p>
+                        <h4 class="font-black text-base mt-4">Processus :</h4>
+                        <ol class="list-decimal ml-7 space-y-2">
+                            <li>Le salarié se présente avec une attestation BeeToGreen ou une demande de devis.</li>
+                            <li>Le vendeur établit un devis au nom de BeeToGreen.</li>
+                            <li>Envoyer le devis à BeeToGreen (ou attendre le bon de commande via leur interface).</li>
+                            <li>Après validation : facturer BeeToGreen et livrer le vélo au salarié.</li>
+                        </ol>
+                        <div class="bg-green-50 dark:bg-slate-800 p-5 rounded-xl mt-4 border-2 border-green-500">
+                            <h4 class="font-black text-base mb-3 text-green-700 dark:text-green-400">Bon à savoir :</h4>
+                            <ul class="list-disc ml-7 space-y-1 font-bold text-sm">
+                                <li>Aucun paiement du salarié en magasin.</li>
+                                <li>Vérifier systématiquement que le bon de commande BeeToGreen est reçu avant la remise du vélo.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lease a Bike — rangée 1, colonne 2 -->
+                <span class="anchor" id="part-lease"></span>
+                <div class="card p-8 border-l-8 border-hb-orange shadow-xl">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 border-b-2 border-slate-100 dark:border-slate-700 pb-5 gap-4">
+                        <img src="Logo Lease a Bike.png" alt="Logo Lease a Bike" class="h-12 object-contain bg-white rounded p-1">
+                        <a href="https://fr.mobility-services.bike/app/login" target="_blank" class="btn-hb"><i class="fas fa-desktop mr-2"></i> Dashboard Lease a Bike</a>
+                    </div>
+                    <div class="text-base space-y-4 text-body">
+                        <p><strong>Présentation :</strong> Lease a Bike propose une location de vélo via l'entreprise, avec un contrat de 36 mois en général.</p>
+                        <h4 class="font-black text-base mt-4">Processus :</h4>
+                        <ol class="list-decimal ml-7 space-y-2">
+                            <li>Le salarié choisit un vélo en magasin.</li>
+                            <li>Le vendeur fait un devis à l'attention de Lease a Bike.</li>
+                            <li>Le salarié soumet le devis à Lease a Bike via sa plateforme employeur.</li>
+                            <li>Lease a Bike renvoie un bon de commande (PO) au magasin.</li>
+                            <li>À réception du PO : préparer le vélo, facturer Lease a Bike (adresse sur le PO) et faire signer un bon de livraison au salarié.</li>
+                        </ol>
+                        <div class="bg-orange-50 dark:bg-slate-800 p-5 rounded-xl mt-4 border-2 border-hb-orange">
+                            <h4 class="font-black text-base mb-3 text-hb-blue dark:text-white">Bon à savoir :</h4>
+                            <ul class="list-disc ml-7 space-y-1 font-bold text-sm">
+                                <li>Le salarié ne paie rien en magasin.</li>
+                                <li>Lease a Bike règle directement Holland Bikes.</li>
+                                <li>Possibilité d'inclure accessoires et entretien selon le contrat.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Zenride — rangée 2, colonne 1 -->
                 <span class="anchor" id="part-zenride"></span>
                 <div class="card p-8 border-l-8 border-hb-blue shadow-xl">
                     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 border-b-2 border-slate-100 dark:border-slate-700 pb-5 gap-4">
@@ -806,61 +877,7 @@
                     </div>
                 </div>
 
-                <!-- Lease a Bike -->
-                <span class="anchor" id="part-lease"></span>
-                <div class="card p-8 border-l-8 border-hb-orange shadow-xl">
-                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 border-b-2 border-slate-100 dark:border-slate-700 pb-5 gap-4">
-                        <img src="Logo Lease a Bike.png" alt="Logo Lease a Bike" class="h-12 object-contain bg-white rounded p-1">
-                        <a href="https://fr.mobility-services.bike/app/login" target="_blank" class="btn-hb"><i class="fas fa-desktop mr-2"></i> Dashboard Lease a Bike</a>
-                    </div>
-                    <div class="text-base space-y-4 text-body">
-                        <p><strong>Présentation :</strong> Lease a Bike propose une location de vélo via l'entreprise, avec un contrat de 36 mois en général.</p>
-                        <h4 class="font-black text-base mt-4">Processus :</h4>
-                        <ol class="list-decimal ml-7 space-y-2">
-                            <li>Le salarié choisit un vélo en magasin.</li>
-                            <li>Le vendeur fait un devis à l'attention de Lease a Bike.</li>
-                            <li>Le salarié soumet le devis à Lease a Bike via sa plateforme employeur.</li>
-                            <li>Lease a Bike renvoie un bon de commande (PO) au magasin.</li>
-                            <li>À réception du PO : préparer le vélo, facturer Lease a Bike (adresse sur le PO) et faire signer un bon de livraison au salarié.</li>
-                        </ol>
-                        <div class="bg-orange-50 dark:bg-slate-800 p-5 rounded-xl mt-4 border-2 border-hb-orange">
-                            <h4 class="font-black text-base mb-3 text-hb-blue dark:text-white">Bon à savoir :</h4>
-                            <ul class="list-disc ml-7 space-y-1 font-bold text-sm">
-                                <li>Le salarié ne paie rien en magasin.</li>
-                                <li>Lease a Bike règle directement Holland Bikes.</li>
-                                <li>Possibilité d'inclure accessoires et entretien selon le contrat.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- BeeToGreen -->
-                <span class="anchor" id="part-bee"></span>
-                <div class="card p-8 border-l-8 border-green-500 shadow-xl">
-                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 border-b-2 border-slate-100 dark:border-slate-700 pb-5 gap-4">
-                        <img src="Logo BeeToGreen.png" alt="Logo BeeToGreen" class="h-12 object-contain bg-white rounded p-1">
-                        <a href="https://app.beetogreen.com/login" target="_blank" class="btn-hb"><i class="fas fa-desktop mr-2"></i> Dashboard BeeToGreen</a>
-                    </div>
-                    <div class="text-base space-y-4 text-body">
-                        <p><strong>Présentation :</strong> BeeToGreen est un opérateur de solutions de mobilité durable. Les salariés peuvent acheter ou louer un vélo via leur entreprise.</p>
-                        <h4 class="font-black text-base mt-4">Processus :</h4>
-                        <ol class="list-decimal ml-7 space-y-2">
-                            <li>Le salarié se présente avec une attestation BeeToGreen ou une demande de devis.</li>
-                            <li>Le vendeur établit un devis au nom de BeeToGreen.</li>
-                            <li>Envoyer le devis à BeeToGreen (ou attendre le bon de commande via leur interface).</li>
-                            <li>Après validation : facturer BeeToGreen et livrer le vélo au salarié.</li>
-                        </ol>
-                        <div class="bg-green-50 dark:bg-slate-800 p-5 rounded-xl mt-4 border-2 border-green-500">
-                            <h4 class="font-black text-base mb-3 text-green-700 dark:text-green-400">Bon à savoir :</h4>
-                            <ul class="list-disc ml-7 space-y-1 font-bold text-sm">
-                                <li>Aucun paiement du salarié en magasin.</li>
-                                <li>Vérifier systématiquement que le bon de commande BeeToGreen est reçu avant la remise du vélo.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Cartes de mobilités -->
+                <!-- Cartes de mobilités — rangée 2, colonne 2 -->
                 <span class="anchor" id="part-cartes"></span>
                 <div class="card p-8 border-l-8 border-purple-500 shadow-xl">
                     <div class="mb-6 border-b-2 border-slate-100 dark:border-slate-700 pb-5">
@@ -897,10 +914,11 @@
                 <p>Cette reprise peut concerner des vélos électriques (VAE) ou des vélos mécaniques. La procédure à suivre est différente selon le type de vélo.</p>
             </div>
 
+            <!-- ✅ CHANGE 5 : Deux cartes côte à côte (anchors déplacées à l'intérieur des cartes) -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
 
-                <span class="anchor" id="rep-electrique"></span>
                 <div class="card p-8 border-t-8 border-hb-blue shadow-xl">
+                    <span class="anchor" id="rep-electrique"></span>
                     <h3 class="text-xl font-black mb-5 text-hb-blue dark:text-white border-b-2 pb-3">Reprise vélos électriques (via Upway)</h3>
                     <div class="text-base space-y-4 text-body">
                         <p class="font-bold">Accédez au dashboard Upway :</p>
@@ -910,8 +928,8 @@
                     </div>
                 </div>
 
-                <span class="anchor" id="rep-mecanique"></span>
                 <div class="card p-8 border-t-8 border-hb-orange shadow-xl bg-slate-50 dark:bg-slate-900">
+                    <span class="anchor" id="rep-mecanique"></span>
                     <h3 class="text-xl font-black mb-5 text-hb-orange border-b-2 border-slate-200 dark:border-slate-700 pb-3">Reprise vélos mécaniques</h3>
                     <div class="text-base space-y-4 text-body">
                         <p class="font-bold">Pour estimer le tarif de reprise, utilisez cet outil :</p>
@@ -923,6 +941,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </section>
 
@@ -932,15 +951,23 @@
 
             <div class="space-y-10">
 
+                <!-- ✅ CHANGE 6 : Logo Véligo à la place du titre texte + info 23€ HT -->
                 <span class="anchor" id="cc-veligo"></span>
                 <div class="card p-8 border-l-8 border-hb-blue shadow-xl">
                     <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 border-b-2 border-slate-100 dark:border-slate-700 pb-5 gap-4">
-                        <h3 class="text-2xl font-black">Véligo</h3>
+                        <img src="veligo_logo.svg" alt="Véligo" class="h-14 object-contain">
                         <a href="https://score-veligo.powerappsportals.com/fr-FR/signin?ReturnUrl=%2Ffr-FR%2F" target="_blank" class="btn-hb"><i class="fas fa-desktop mr-2"></i> Dashboard Véligo</a>
                     </div>
                     <div class="text-base space-y-4 text-body">
                         <p><strong class="text-hb-blue dark:text-white">Opportunité commerciale :</strong><br>Véligo amène en magasin des personnes qui testent le vélo électrique pour la première fois. C'est une occasion unique de capter le client au tout début de son projet de mobilité.</p>
                         <p><strong class="text-hb-blue dark:text-white">Rôle du magasin :</strong><br>Le magasin agit comme point relais. Il assure la réception et le stockage sécurisé du vélo jusqu'au passage du client.</p>
+
+                        <!-- Info rémunération -->
+                        <div class="bg-blue-50 dark:bg-blue-900/20 border-l-8 border-hb-blue p-5 rounded-xl font-bold text-hb-blue dark:text-blue-300 text-base flex items-center gap-3">
+                            <i class="fas fa-euro-sign text-2xl"></i>
+                            <span>Le magasin perçoit <strong class="text-lg">23 € HT</strong> par reprise ou remise de vélo Véligo.</span>
+                        </div>
+
                         <p><strong class="text-hb-blue dark:text-white">Procédure de remise :</strong></p>
                         <ul class="list-disc ml-7 space-y-1">
                             <li>Le vélo arrive déjà monté.</li>
@@ -965,10 +992,11 @@
                     </div>
                 </div>
 
+                <!-- ✅ CHANGE 6 : Logo Upway à la place du titre texte -->
                 <span class="anchor" id="cc-upway"></span>
                 <div class="card p-8 border-l-8 border-hb-orange shadow-xl">
                     <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 border-b-2 border-slate-100 dark:border-slate-700 pb-5 gap-4">
-                        <h3 class="text-2xl font-black">Upway</h3>
+                        <img src="Upway_Logo_RGB_Electric_Blue_3d75a445-f11e-48ef-8119-b7b090defa13.webp" alt="Upway" class="h-10 object-contain">
                         <a href="https://b2b.upway.app/" target="_blank" class="btn-hb"><i class="fas fa-desktop mr-2"></i> Dashboard Upway</a>
                     </div>
                     <div class="text-base space-y-4 text-body">
@@ -986,14 +1014,12 @@
     </main>
 
     <script>
-        // Navigation — affiche une section et active le bon nav-link
         function showSection(id, el) {
             document.querySelectorAll('.section-page').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
             document.querySelectorAll('.sub-nav').forEach(s => s.style.display = 'none');
             document.getElementById(id).classList.add('active');
             el.classList.add('active');
-            // Afficher le sous-menu correspondant
             const subNav = el.nextElementSibling;
             if (subNav && subNav.classList.contains('sub-nav')) {
                 subNav.style.display = 'block';
@@ -1001,7 +1027,6 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Scroll vers une ancre dans la section active
         function scrollToAnchor(anchorId) {
             const el = document.getElementById(anchorId);
             if (el) {
@@ -1009,7 +1034,6 @@
             }
         }
 
-        // Affichage initial du sous-menu de la section active
         document.querySelectorAll('.sub-nav').forEach(s => s.style.display = 'none');
         const firstActiveNav = document.querySelector('.nav-link.active');
         if (firstActiveNav) {
@@ -1017,12 +1041,10 @@
             if (firstSub && firstSub.classList.contains('sub-nav')) firstSub.style.display = 'block';
         }
 
-        // Dark mode
         function toggleTheme() {
             document.documentElement.classList.toggle('dark');
         }
 
-        // Calculateur Commission LLD
         const inputCalcMoisLld = document.getElementById('calc-mois-lld');
         const inputCalcLoyerLld = document.getElementById('calc-loyer-lld');
         const calcResultLld = document.getElementById('calc-result-lld');
@@ -1041,7 +1063,6 @@
         inputCalcMoisLld.addEventListener('change', updateCalcLld);
         inputCalcLoyerLld.addEventListener('input', updateCalcLld);
 
-        // Modal zoom image
         function openModal(src) {
             document.getElementById('modalImg').src = src;
             document.getElementById('imgModal').style.display = 'flex';
