@@ -1,4 +1,196 @@
-     <!-- =============================== LLD =============================== -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Services Holland Bikes 2026</title>
+    <link rel="icon" type="image/png" href="flavicon-hollandbikes.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        hb: { blue: '#003366', orange: '#E65A28', 'dark-bg': '#0a192f', 'dark-card': '#112240', 'dark-text': '#e6f1ff' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap');
+
+        body { font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.7; }
+        h1, h2, h3, h4, h5 { font-family: 'Montserrat', sans-serif; text-transform: uppercase; }
+
+        .sidebar { width: 300px; position: fixed; height: 100vh; background: #fff; border-right: 1px solid #e2e8f0; z-index: 50; display: flex; flex-direction: column; justify-content: space-between; }
+        .dark .sidebar { background: #112240; border-right-color: #233554; }
+        .main-content { margin-left: 300px; padding: 40px; max-width: 1400px; }
+
+        .nav-link { padding: 12px 20px; display: flex; align-items: center; cursor: pointer; font-weight: 700; font-size: 14px; color: #475569; transition: 0.2s; border-left: 4px solid transparent; text-transform: uppercase; letter-spacing: 0.03em; }
+        .nav-link:hover { background: #f8fafc; color: #E65A28; }
+        .nav-link.active { background: #eff6ff; color: #E65A28; border-left-color: #E65A28; }
+        .dark .nav-link { color: #94a3b8; }
+        .dark .nav-link:hover { background: #1e293b; color: #E65A28; }
+        .dark .nav-link.active { background: rgba(230, 90, 40, 0.1); }
+
+        .sub-nav { display: none; background: #f8fafc; border-left: 4px solid #e2e8f0; }
+        .dark .sub-nav { background: #0d1f3c; border-left-color: #233554; }
+        .nav-link.active + .sub-nav { display: block; }
+        .sub-nav-link { padding: 8px 16px 8px 32px; display: flex; align-items: center; cursor: pointer; font-size: 13px; font-weight: 500; color: #64748b; transition: 0.15s; font-family: 'Inter', sans-serif; text-transform: none; letter-spacing: 0; }
+        .sub-nav-link:hover { color: #E65A28; background: #fff; }
+        .dark .sub-nav-link { color: #94a3b8; }
+        .dark .sub-nav-link:hover { background: #1e293b; color: #E65A28; }
+        .sub-nav-link i { width: 18px; text-align: center; margin-right: 8px; font-size: 11px; color: #94a3b8; }
+
+        .section-page { display: none; animation: fadeIn 0.4s ease-in-out; }
+        .section-page.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .card { background: white; border-radius: 12px; padding: 28px; border: 1px solid #e2e8f0; margin-bottom: 28px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+        .dark .card { background: #112240; border-color: #233554; }
+
+        .btn-hb { background: #003366; color: white !important; padding: 12px 24px; border-radius: 8px; font-weight: 700; font-size: 15px; display: inline-flex; align-items: center; justify-content: center; transition: 0.3s; text-decoration: none; cursor: pointer; border: none; }
+        .btn-hb:hover { background: #E65A28; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(230, 90, 40, 0.3); }
+
+        .bubble { background: #f8fafc; padding: 22px; border-radius: 12px; border-left: 5px solid #003366; }
+        .dark .bubble { background: #1e293b; border-left-color: #4facfe; }
+
+        .img-zoom { cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease; border-radius: 8px; border: 1px solid #cbd5e1; max-width: 100%; height: auto; display: block; margin: 12px 0; }
+        .dark .img-zoom { border-color: #334155; }
+        .img-zoom:hover { transform: scale(1.03); box-shadow: 0 10px 25px rgba(0,0,0,0.15); z-index: 10; position: relative; }
+
+        #imgModal { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); justify-content: center; align-items: center; backdrop-filter: blur(5px); }
+        #imgModal img { max-width: 90vw; max-height: 90vh; border-radius: 8px; box-shadow: 0 0 30px rgba(0,0,0,0.5); object-fit: contain; }
+
+        table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 15px; }
+        th, td { border: 1px solid #e2e8f0; padding: 14px; text-align: left; }
+        th { background-color: #f1f5f9; font-weight: bold; }
+        .dark th, .dark td { border-color: #334155; }
+        .dark th { background-color: #1e293b; }
+
+        .text-body { font-size: 1rem; line-height: 1.75; }
+        .text-important { font-size: 1.1rem; font-weight: 600; }
+
+        .anchor { display: block; position: relative; top: -80px; visibility: hidden; }
+
+        /* Option 1 assurance — mise en avant */
+        .option-featured {
+            transform: scale(1.02);
+            transform-origin: top center;
+            box-shadow: 0 20px 50px rgba(0, 51, 102, 0.18), 0 0 0 3px #003366;
+            position: relative;
+            z-index: 2;
+        }
+        .dark .option-featured {
+            box-shadow: 0 20px 50px rgba(79, 172, 254, 0.2), 0 0 0 3px #4facfe;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-hb-dark-bg text-slate-800 dark:text-hb-dark-text">
+
+    <div id="imgModal" onclick="this.style.display='none'">
+        <img id="modalImg" src="" alt="Zoom Image">
+    </div>
+
+    <button onclick="toggleTheme()" class="fixed top-6 right-6 z-[100] p-3 bg-white dark:bg-hb-dark-card rounded-full shadow-lg border border-slate-200 dark:border-slate-700 hover:scale-110 transition-transform">
+        <i class="fas fa-moon dark:hidden text-hb-blue text-xl"></i>
+        <i class="fas fa-sun hidden dark:block text-yellow-400 text-xl"></i>
+    </button>
+
+    <aside class="sidebar overflow-y-auto">
+        <div>
+            <div class="p-6 border-b dark:border-slate-800 text-center">
+                <img src="Logo HB_v1_Bleu.jpg" class="w-full max-w-[180px] mx-auto dark:hidden" alt="Holland Bikes">
+                <img src="Logo HB_v1_Blanc.png" class="w-full max-w-[180px] mx-auto hidden dark:block" alt="Holland Bikes">
+            </div>
+            <nav class="mt-2">
+
+                <!-- LLD -->
+                <div class="nav-link active" onclick="showSection('lld', this)">
+                    <i class="fas fa-file-invoice-dollar w-7 text-center mr-2"></i> Location Longue Durée
+                </div>
+                <div class="sub-nav">
+                    <div class="sub-nav-link" onclick="scrollToAnchor('lld-greenleaze')"><i class="fas fa-circle-dot"></i> GreenLeaze</div>
+                    <div class="sub-nav-link" onclick="scrollToAnchor('lld-argumentaire')"><i class="fas fa-circle-dot"></i> Argumentaire de vente</div>
+                    <div class="sub-nav-link" onclick="scrollToAnchor('lld-forfaits')"><i class="fas fa-circle-dot"></i> Forfaits révision</div>
+                    <div class="sub-nav-link" onclick="scrollToAnchor('lld-procedure-vente')"><i class="fas fa-circle-dot"></i> Procédure de vente</div>
+                    <div class="sub-nav-link" onclick="scrollToAnchor('lld-facturation')"><i class="fas fa-circle-dot"></i> Facturation CycleSoftware</div>
+                </div>
+
+                <!-- Abonnement Entretien -->
+                <div class="nav-link" onclick="showSection('abo', this)">
+                    <i class="fas fa-tools w-7 text-center mr-2"></i> Abonnement Entretien
+                </div>
+                <div class="sub-nav">
+                    <div class="sub-nav-link" onclick="scrollToAnchor('abo-presentation')"><i class="fas fa-circle-dot"></i> Présentation & tarifs</div>
+                    <div class="sub-nav-link" onclick="scrollToAnchor('abo-prestations')"><i class="fas fa-circle-dot"></i> Prestations incluses</div>
+                    <div class="sub-nav-link" onclick="scrollToAnchor('abo-eligibilite')"><i class="fas fa-circle-dot"></i> Conditions d'éligibilité</div>
+                    <div class="sub-nav-link" onclick="scrollToAnchor('abo-roles')"><i class="fas fa-circle-dot"></i> Rôles & responsabilités</div>
+                    <div class="sub-nav-link" onclick="scrollToAnchor('abo-stripe')"><i class="fas fa-circle-dot"></i> Process Stripe</div>
+                    <div class="sub-nav-link" onclick="scrollToAnchor('abo-verification')"><i class="fas fa-circle-dot"></i> Vérification Stripe</div>
+                    <div class="sub-nav-link" onclick="scrollToAnchor('abo-argumentaire')"><i class="fas fa-circle-dot"></i> Argumentaire commercial</div>
+                </div>
+
+                <!-- Assurance -->
+                <div class="nav-link" onclick="showSection('assurance', this)">
+                    <i class="fas fa-shield-alt w-7 text-center mr-2"></i> Assurance
+                </div>
+                <div class="sub-nav">
+                    <div class="sub-nav-link" onclick="scrollToAnchor('ass-4mois')"><i class="fas fa-circle-dot"></i> Assurance 4 mois offerte</div>
+                    <div class="sub-nav-link" onclick="scrollToAnchor('ass-prolonger')"><i class="fas fa-circle-dot"></i> Prolonger après 4 mois</div>
+                    <div class="sub-nav-link" onclick="scrollToAnchor('ass-extension')"><i class="fas fa-circle-dot"></i> Extension 1–2 ans</div>
+                    <div class="sub-nav-link" onclick="scrollToAnchor('ass-laka')"><i class="fas fa-circle-dot"></i> Assurance mensuelle Laka</div>
+                    <div class="sub-nav-link" onclick="scrollToAnchor('ass-comparatif')"><i class="fas fa-circle-dot"></i> Comparatif</div>
+                </div>
+
+                <!-- Partenaires -->
+                <div class="nav-link" onclick="showSection('partenaires', this)">
+                    <i class="fas fa-handshake w-7 text-center mr-2"></i> Partenaires de Mobilités
+                </div>
+                <div class="sub-nav">
+                    <div class="sub-nav-link" onclick="scrollToAnchor('part-zenride')"><i class="fas fa-circle-dot"></i> Zenride</div>
+                    <div class="sub-nav-link" onclick="scrollToAnchor('part-lease')"><i class="fas fa-circle-dot"></i> Lease a Bike</div>
+                    <div class="sub-nav-link" onclick="scrollToAnchor('part-bee')"><i class="fas fa-circle-dot"></i> BeeToGreen</div>
+                    <div class="sub-nav-link" onclick="scrollToAnchor('part-cartes')"><i class="fas fa-circle-dot"></i> Cartes de mobilités</div>
+                </div>
+
+                <!-- Reprise vélo -->
+                <div class="nav-link" onclick="showSection('reprise', this)">
+                    <i class="fas fa-sync w-7 text-center mr-2"></i> Reprise vélo
+                </div>
+                <div class="sub-nav">
+                    <div class="sub-nav-link" onclick="scrollToAnchor('rep-electrique')"><i class="fas fa-circle-dot"></i> Vélos électriques (Upway)</div>
+                    <div class="sub-nav-link" onclick="scrollToAnchor('rep-mecanique')"><i class="fas fa-circle-dot"></i> Vélos mécaniques</div>
+                </div>
+
+                <!-- Click & Collect -->
+                <div class="nav-link" onclick="showSection('clickcollect', this)">
+                    <i class="fas fa-box-open w-7 text-center mr-2"></i> Click &amp; Collect
+                </div>
+                <div class="sub-nav">
+                    <div class="sub-nav-link" onclick="scrollToAnchor('cc-veligo')"><i class="fas fa-circle-dot"></i> Véligo</div>
+                    <div class="sub-nav-link" onclick="scrollToAnchor('cc-upway')"><i class="fas fa-circle-dot"></i> Upway</div>
+                </div>
+
+            </nav>
+        </div>
+        <div class="p-5 bg-slate-100 dark:bg-slate-800 border-t dark:border-slate-700 m-3 rounded-xl">
+            <p class="font-bold text-base mb-2 text-hb-blue dark:text-white">Contact :</p>
+            <a href="mailto:bruno.buisson@hollandbikes.com" class="flex items-center text-hb-orange hover:underline mb-2 font-medium text-sm break-all">
+                <i class="fas fa-envelope mr-2"></i> bruno.buisson@hollandbikes.com
+            </a>
+            <a href="tel:+33685269576" class="flex items-center text-hb-orange hover:underline font-medium text-sm">
+                <i class="fas fa-phone mr-2"></i> +33 6 85 26 95 76
+            </a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+
+        <!-- =============================== LLD =============================== -->
         <section id="lld" class="section-page active">
             <h2 class="text-3xl font-black mb-6 text-hb-blue dark:text-white border-b-4 border-hb-orange inline-block pb-2">Location Longue Durée (LLD)</h2>
 
