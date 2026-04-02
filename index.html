@@ -25,64 +25,59 @@
         body { font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.7; }
         h1, h2, h3, h4, h5 { font-family: 'Montserrat', sans-serif; text-transform: uppercase; }
 
-/* Sidebar de base (réduite) */
-.sidebar { 
-    width: 80px; 
-    position: fixed; 
-    height: 100vh; 
-    background: #fff; 
-    border-right: 1px solid #e2e8f0; 
-    z-index: 50; 
-    display: flex; 
-    flex-direction: column; 
-    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
-    overflow-x: hidden; /* Empêche le texte de dépasser quand c'est fermé */
-}
+/* Sidebar de base */
+        .sidebar { 
+            width: 80px; 
+            position: fixed; 
+            height: 100vh; 
+            background: #fff; 
+            border-right: 1px solid #e2e8f0; 
+            z-index: 50; 
+            display: flex; 
+            flex-direction: column; 
+            transition: all 0.3s ease; 
+            overflow: hidden; /* Empêche le texte de déborder */
+        }
 
-/* Sidebar quand on clique sur le burger */
-.sidebar.expanded { 
-    width: 300px; 
-}
+        /* Largeur quand ouverte */
+        .sidebar.expanded { width: 300px; }
 
-/* Liens du menu */
-.nav-link { 
-    padding: 12px 0; 
-    display: flex; 
-    align-items: center; 
-    cursor: pointer; 
-    font-weight: 700; 
-    color: #475569; 
-    transition: 0.2s; 
-    white-space: nowrap; /* Force le texte sur une seule ligne */
-}
+        /* Liens du menu */
+        .nav-link { 
+            display: flex; 
+            align-items: center; 
+            height: 60px; /* Hauteur fixe pour l'alignement */
+            cursor: pointer; 
+            color: #475569; 
+            text-decoration: none;
+            transition: background 0.2s;
+            white-space: nowrap; 
+        }
 
-.nav-link i {
-    min-width: 80px; /* L'icône prend toute la largeur de la barre réduite */
-    text-align: center;
-    font-size: 1.2rem;
-}
+        /* L'icône reste toujours centrée dans les 80px */
+        .nav-link i { 
+            min-width: 80px; 
+            text-align: center; 
+            font-size: 1.2rem; 
+        }
 
-/* Le texte est masqué par défaut */
-.nav-link .nav-text {
-    opacity: 0;
-    transition: opacity 0.2s;
-    pointer-events: none;
-}
+        /* LE TEXTE : Caché par défaut */
+        .nav-link .nav-text { 
+            opacity: 0; 
+            visibility: hidden; 
+            transition: opacity 0.2s; 
+            font-weight: 600;
+        }
 
-/* Le texte apparaît seulement quand la sidebar est 'expanded' */
-.sidebar.expanded .nav-link .nav-text {
-    opacity: 1;
-    pointer-events: auto;
-}
+        /* LE TEXTE : Visible seulement quand expanded */
+        .sidebar.expanded .nav-link .nav-text { 
+            opacity: 1; 
+            visibility: visible; 
+        }
 
-/* Décalage du contenu principal */
-.main-content { 
-    margin-left: 80px; 
-    transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
-}
-.main-content.expanded { 
-    margin-left: 300px; 
-}
+        /* Ajustement du contenu principal */
+        .main-content { margin-left: 80px; transition: margin-left 0.3s ease; }
+        .main-content.expanded { margin-left: 300px; }
 
         /* Header fixe */
         .top-header { position: fixed; top: 0; left: 80px; right: 0; height: 70px; background: white; border-bottom: 2px solid #e2e8f0; z-index: 40; display: flex; align-items: center; padding: 0 40px; gap: 30px; transition: left 0.3s ease; }
@@ -226,7 +221,7 @@
             <i class="fas fa-search search-icon"></i>
         </div>
     </header>
-    <aside class="sidebar overflow-y-auto">
+    <aside class="sidebar id="sidebar">
         <div>
             <div class="p-6 border-b dark:border-slate-800 text-center">
                 <img src="Logo HB_v1_Bleu.jpg" class="w-full max-w-[180px] mx-auto dark:hidden" alt="Holland Bikes">
@@ -1211,19 +1206,16 @@
         }
 
 function toggleSidebar() {
-    const sidebar = document.getElementById('sidebar');
-    const mainContent = document.getElementById('mainContent');
-    const topHeader = document.getElementById('topHeader');
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.getElementById('mainContent');
+            const topHeader = document.getElementById('topHeader');
 
-    // On ajoute ou on retire la classe 'expanded' à chaque clic
-    sidebar.classList.toggle('expanded');
-    mainContent.classList.toggle('expanded');
-    
-    // Si vous avez un header fixe, on le décale aussi
-    if(topHeader) {
-        topHeader.classList.toggle('expanded');
-    }
-}
+            // On bascule la classe 'expanded' (si elle y est, on l'enlève, sinon on l'ajoute)
+            sidebar.classList.toggle('expanded');
+            
+            if (mainContent) mainContent.classList.toggle('expanded');
+            if (topHeader) topHeader.classList.toggle('expanded');
+        }
 
         function filterSearch() {
             const input = document.getElementById('searchInput').value.toLowerCase();
