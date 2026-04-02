@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Services Holland Bikes 2026</title>
+    <title>Dashboard Services Holland Bikes</title>
     <link rel="icon" type="image/png" href="flavicon-hollandbikes.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -434,16 +434,6 @@
                     <div class="sub-nav-link" onclick="scrollToAnchor('lld-dashboard')"><i class="fas fa-circle-dot"></i> Dashboard LLD</div>
                 </div>
 
-                <!-- Assurance Vol -->
-                <div class="nav-link" onclick="showSection('assurance', this)">
-                    <i class="fas fa-shield-alt w-7 text-center"></i>
-                    <span class="nav-text">Assurance Vol</span>
-                </div>
-                <div class="sub-nav">
-                    <div class="sub-nav-link" onclick="scrollToAnchor('assurance-options')"><i class="fas fa-circle-dot"></i> Options d'assurance</div>
-                    <div class="sub-nav-link" onclick="scrollToAnchor('assurance-calculateur')"><i class="fas fa-circle-dot"></i> Calculateur commission</div>
-                </div>
-
                 <!-- Abonnement entretien -->
                 <div class="nav-link" onclick="showSection('abonnement', this)">
                     <i class="fas fa-tools w-7 text-center"></i>
@@ -452,6 +442,16 @@
                 <div class="sub-nav">
                     <div class="sub-nav-link" onclick="scrollToAnchor('abo-presentation')"><i class="fas fa-circle-dot"></i> Présentation</div>
                     <div class="sub-nav-link" onclick="scrollToAnchor('abo-calculateur')"><i class="fas fa-circle-dot"></i> Calculateur commission</div>
+                </div>
+                
+                <!-- Assurance Vol -->
+                <div class="nav-link" onclick="showSection('assurance', this)">
+                    <i class="fas fa-shield-alt w-7 text-center"></i>
+                    <span class="nav-text">Assurance Vol</span>
+                </div>
+                <div class="sub-nav">
+                    <div class="sub-nav-link" onclick="scrollToAnchor('assurance-options')"><i class="fas fa-circle-dot"></i> Options d'assurance</div>
+                    <div class="sub-nav-link" onclick="scrollToAnchor('assurance-calculateur')"><i class="fas fa-circle-dot"></i> Calculateur commission</div>
                 </div>
 
                 <!-- Partenaires -->
@@ -494,7 +494,7 @@
 
         <!-- =============================== PAGE D'ACCUEIL =============================== -->
         <section id="home" class="section-page active">
-            <h1 class="text-4xl font-black mb-6 text-hb-blue dark:text-white">Bienvenue sur le Dashboard Services Holland Bikes 2026</h1>
+            <h1 class="text-4xl font-black mb-6 text-hb-blue dark:text-white">Bienvenue sur le Dashboard Services Holland Bikes</h1>
             <p class="text-lg text-slate-600 dark:text-slate-300 mb-10">Accédez rapidement à toutes les sections de notre guide de services et partenariats.</p>
 
             <div class="home-tiles">
@@ -506,20 +506,20 @@
                     <p class="home-tile-desc">Découvrez GreenLeaze, l'argumentaire de vente, les calculateurs de commission et le dashboard LLD.</p>
                 </div>
 
-                <div class="home-tile" onclick="showSection('assurance', document.querySelectorAll('.nav-link')[3])">
-                    <div class="home-tile-icon" style="background: linear-gradient(135deg, #E65A28, #ff8c5a);">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3 class="home-tile-title">Assurance Vol</h3>
-                    <p class="home-tile-desc">Options d'assurance, calculateurs de commission et tous les détails pour protéger vos clients.</p>
-                </div>
-
                 <div class="home-tile" onclick="showSection('abonnement', document.querySelectorAll('.nav-link')[5])">
                     <div class="home-tile-icon" style="background: linear-gradient(135deg, #10b981, #34d399);">
                         <i class="fas fa-tools"></i>
                     </div>
                     <h3 class="home-tile-title">Abonnement Entretien</h3>
                     <p class="home-tile-desc">Présentation complète de l'abonnement entretien et calculateur de commission pour vos ventes.</p>
+                </div>
+
+                <div class="home-tile" onclick="showSection('assurance', document.querySelectorAll('.nav-link')[3])">
+                    <div class="home-tile-icon" style="background: linear-gradient(135deg, #E65A28, #ff8c5a);">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="home-tile-title">Assurance Vol</h3>
+                    <p class="home-tile-desc">Options d'assurance, calculateurs de commission et tous les détails pour protéger vos clients.</p>
                 </div>
 
                 <div class="home-tile" onclick="showSection('partenaires', document.querySelectorAll('.nav-link')[7])">
@@ -548,8 +548,8 @@
             </div>
         </section>
 
-        <!-- =============================== LLD =============================== -->
-         <section id="lld" class="section-page active">
+          <!-- =============================== LLD =============================== -->
+        <section id="lld" class="section-page active">
             <h2 class="text-3xl font-black mb-6 text-hb-blue dark:text-white border-b-4 border-hb-orange inline-block pb-2">Location Longue Durée (LLD)</h2>
 
             <span class="anchor" id="lld-greenleaze"></span>
@@ -714,7 +714,7 @@
             </div>
         </section>
 
-       <!-- =============================== ABONNEMENT =============================== -->
+        <!-- =============================== ABONNEMENT =============================== -->
         <section id="abo" class="section-page">
             <h2 class="text-3xl font-black mb-6 text-hb-blue dark:text-white border-b-4 border-hb-orange inline-block pb-2">Abonnement Entretien</h2>
 
@@ -1263,51 +1263,36 @@
             </div>
         </section>
 
-        <!-- =============================== REPRISE DE VÉLOS =============================== -->
+        <!-- =============================== REPRISE =============================== -->
         <section id="reprise" class="section-page">
-            <h2 class="text-3xl font-black mb-8 text-hb-blue dark:text-white border-b-4 border-hb-orange inline-block pb-2">Reprise de vélos</h2>
+            <h2 class="text-3xl font-black mb-8 text-hb-blue dark:text-white border-b-4 border-hb-orange inline-block pb-2">Reprises vélo en magasin</h2>
 
-            <div class="space-y-10">
+            <div class="bubble mb-10 text-base font-medium p-6 shadow-md">
+                <p class="mb-3">Nous proposons en magasin une offre de reprise de vélos lors de l'achat d'un vélo neuf, afin de faciliter la décision d'achat des clients et de donner une seconde vie aux vélos repris.</p>
+                <p>Cette reprise peut concerner des vélos électriques (VAE) ou des vélos mécaniques. La procédure à suivre est différente selon le type de vélo.</p>
+            </div>
 
-                <span class="anchor" id="reprise-upway"></span>
-                <div class="card p-8 border-l-8 border-hb-blue shadow-xl">
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 border-b-2 border-slate-100 dark:border-slate-700 pb-5 gap-4">
-                        <div>
-                            <img src="Upway_Logo_RGB_Electric_Blue_3d75a445-f11e-48ef-8119-b7b090defa13.png" alt="Upway" class="h-10 object-contain mb-2">
-                            <h3 class="text-2xl font-black text-hb-blue dark:text-white uppercase">Reprise VAE avec Upway</h3>
-                        </div>
-                        <a href="https://b2b.upway.app/" target="_blank" class="btn-hb"><i class="fas fa-desktop mr-2"></i> Dashboard Upway</a>
-                    </div>
+            <!-- ✅ CHANGE 5 : Deux cartes côte à côte (anchors déplacées à l'intérieur des cartes) -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+                <div class="card p-8 border-t-8 border-hb-blue shadow-xl">
+                    <span class="anchor" id="rep-electrique"></span>
+                    <h3 class="text-xl font-black mb-5 text-hb-blue dark:text-white border-b-2 pb-3">Reprise vélos électriques (via Upway)</h3>
                     <div class="text-base space-y-4 text-body">
-                        <p><strong class="text-hb-blue dark:text-white">Processus de reprise :</strong></p>
-                        <ol class="list-decimal ml-7 space-y-2">
-                            <li>Le client amène son VAE en magasin</li>
-                            <li>Le vendeur évalue l'état du vélo sur place</li>
-                            <li>Connexion au dashboard Upway pour obtenir une cotation instantanée</li>
-                            <li>Si accord : signature du bon de reprise et versement immédiat au client</li>
-                            <li>Envoi du vélo à Upway via transporteur (organisé par Upway)</li>
-                        </ol>
-                        <div class="bg-blue-50 dark:bg-slate-800 p-5 rounded-xl mt-4 border-l-4 border-hb-blue">
-                            <p class="font-bold text-lg mb-2">💰 Avantage commercial :</p>
-                            <p>La reprise immédiate facilite la vente d'un vélo neuf. Utilisez-la comme levier de négociation : « Nous reprenons votre ancien vélo aujourd'hui, et vous repartez avec un modèle neuf. »</p>
-                        </div>
-                        <a href="https://docs.google.com/document/u/0/d/1N1JwlpCtb8hCjHJ-6zVHXv2xsEIy0KvXsvZNKCW3SRc/edit" target="_blank" class="btn-hb w-full text-center mt-4"><i class="fas fa-file-alt mr-2"></i> Procédure complète Upway</a>
+                        <p class="font-bold">Accédez au dashboard Upway :</p>
+                        <a href="https://b2b.upway.app/" target="_blank" class="btn-hb w-full text-center"><i class="fas fa-desktop mr-2"></i> Dashboard Upway</a>
+                        <p class="font-bold mt-2">Voir la procédure de reprise avec Upway :</p>
+                        <a href="https://docs.google.com/document/u/0/d/1oWZDF-55mnysoBn533sUWIcrmj64x7mpLuYJzv1q_2Y/edit" target="_blank" class="btn-hb w-full text-center"><i class="fas fa-file-alt mr-2"></i> Procédure reprise Upway</a>
                     </div>
                 </div>
 
-                <span class="anchor" id="reprise-mecaniques"></span>
-                <div class="card p-8 border-l-8 border-hb-orange shadow-xl">
-                    <h3 class="text-2xl font-black mb-6 text-hb-orange uppercase">Reprise vélos mécaniques</h3>
+                <div class="card p-8 border-t-8 border-hb-orange shadow-xl bg-slate-50 dark:bg-slate-900">
+                    <span class="anchor" id="rep-mecanique"></span>
+                    <h3 class="text-xl font-black mb-5 text-hb-orange border-b-2 border-slate-200 dark:border-slate-700 pb-3">Reprise vélos mécaniques</h3>
                     <div class="text-base space-y-4 text-body">
-                        <p><strong class="text-hb-orange">Processus interne :</strong><br>Pour les vélos mécaniques, Upway ne propose pas de reprise. Chaque magasin doit gérer la reprise en interne.</p>
-                        <p><strong class="text-hb-orange">Étapes :</strong></p>
-                        <ol class="list-decimal ml-7 space-y-2">
-                            <li>Évaluation du vélo par le vendeur en magasin</li>
-                            <li>Envoi des informations (photos, état) à l'EBSC pour validation</li>
-                            <li>Validation du prix de reprise par l'EBSC</li>
-                            <li>Achat au client et expédition du vélo à l'EBSC</li>
-                            <li>Reconditionnement par l'EBSC et mise en ligne pour revente</li>
-                        </ol>
+                        <p class="font-bold">Pour estimer le tarif de reprise, utilisez cet outil :</p>
+                        <a href="https://hollandbikes.github.io/reprise-velo-mecanique/" target="_blank" class="btn-hb bg-hb-orange hover:bg-orange-600 w-full text-center"><i class="fas fa-calculator mr-2"></i> Calculateur reprise vélo mécanique</a>
+                        <p class="font-bold mt-2">Voir la procédure à suivre :</p>
                         <a href="https://docs.google.com/document/u/0/d/11-49ROBzKyVPC0UHN13OYHFiUMuVrlBkncL97le9RHM/edit" target="_blank" class="btn-hb w-full text-center"><i class="fas fa-file-alt mr-2"></i> Procédure reprise vélos mécaniques</a>
                         <div class="bg-orange-100 dark:bg-slate-800 p-5 rounded-lg mt-4 border border-hb-orange">
                             <p class="text-sm font-medium leading-relaxed">Pour les vélos mécaniques, la revente à Upway n'est pas possible. Chaque magasin doit reprendre le vélo, envoyer les informations à l'EBSC pour validation, puis expédier le vélo à l'EBSC pour reconditionnement et mise en ligne.</p>
@@ -1324,6 +1309,7 @@
 
             <div class="space-y-10">
 
+                <!-- ✅ CHANGE 6 : Logo Véligo à la place du titre texte + info 23€ HT -->
                 <span class="anchor" id="cc-veligo"></span>
                 <div class="card p-8 border-l-8 border-hb-blue shadow-xl">
                     <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 border-b-2 border-slate-100 dark:border-slate-700 pb-5 gap-4">
@@ -1334,6 +1320,7 @@
                         <p><strong class="text-hb-blue dark:text-white">Opportunité commerciale :</strong><br>Véligo amène en magasin des personnes qui testent le vélo électrique pour la première fois. C'est une occasion unique de capter le client au tout début de son projet de mobilité.</p>
                         <p><strong class="text-hb-blue dark:text-white">Rôle du magasin :</strong><br>Le magasin agit comme point relais. Il assure la réception et le stockage sécurisé du vélo jusqu'au passage du client.</p>
 
+                        <!-- Info rémunération -->
                         <div class="bg-blue-50 dark:bg-blue-900/20 border-l-8 border-hb-blue p-5 rounded-xl font-bold text-hb-blue dark:text-blue-300 text-base flex items-center gap-3">
                             <i class="fas fa-euro-sign text-2xl"></i>
                             <span>Le magasin perçoit <strong class="text-lg">23 € HT</strong> par reprise ou remise de vélo Véligo.</span>
@@ -1349,10 +1336,6 @@
                         </div>
                         <p><strong class="text-hb-blue dark:text-white">Offre de conversion :</strong><br>Proposer dès le premier contact un casque et un antivol offerts pour tout achat d'un vélo en magasin faisant suite à une location Véligo.</p>
 
-                        <div class="bg-slate-100 dark:bg-slate-800 p-5 rounded-xl mt-4 border-l-4 border-hb-blue">
-                            <p><strong class="text-hb-blue dark:text-white">Le levier LLD :</strong><br>Pour les clients Véligo, présentez la LLD GreenLeaze comme la suite logique pour bénéficier d'un vélo neuf avec la même liberté.</p>
-                        </div>
-
                         <div class="bg-slate-100 dark:bg-slate-800 p-5 rounded-xl mt-4">
                             <p class="font-black text-lg mb-4">Procédures PDF :</p>
                             <div class="flex flex-col sm:flex-row gap-4">
@@ -1367,6 +1350,7 @@
                     </div>
                 </div>
 
+                <!-- ✅ CHANGE 6 : Logo Upway à la place du titre texte -->
                 <span class="anchor" id="cc-upway"></span>
                 <div class="card p-8 border-l-8 border-hb-orange shadow-xl">
                     <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 border-b-2 border-slate-100 dark:border-slate-700 pb-5 gap-4">
@@ -1377,122 +1361,26 @@
                         <p><strong class="text-hb-orange">Prestation logistique :</strong><br>Le forfait de 42 € couvre le déballage, la mise en service (montage des pédales, réglage du guidon) et l'explication du fonctionnement au client.</p>
                         <p><strong class="text-hb-orange">Ventes additionnelles :</strong><br>Profitez du retrait pour proposer des accessoires (antivol, casque, sacoches).</p>
                         <p><strong class="text-hb-orange">Fidélisation :</strong><br>Proposer systématiquement l'Abonnement Entretien (indispensable sur de l'occasion) et une révision sécurité offerte sous 3 mois pour créer une fiche client dans CycleSoftware.</p>
+                        <div class="bg-orange-50 dark:bg-slate-800 p-5 rounded-xl mt-4 border-l-4 border-hb-orange">
+                            <p><strong class="text-hb-orange">Le levier LLD :</strong><br>Pour les clients Upway/Véligo, présentez la LLD GreenLeaze comme la suite logique pour bénéficier d'un vélo neuf avec la même liberté.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        </div>
     </main>
 
     <script>
-        // Données de recherche
-        const searchData = [
-            { title: 'Accueil', section: 'home', path: 'Accueil', nav: null },
-            { title: 'Location Longue Durée', section: 'lld', path: 'LLD', nav: 1 },
-            { title: 'GreenLeaze', section: 'lld', anchor: 'lld-greenleaze', path: 'LLD > GreenLeaze', nav: 1 },
-            { title: 'Argumentaire de vente LLD', section: 'lld', anchor: 'lld-argumentaire', path: 'LLD > Argumentaire', nav: 1 },
-            { title: 'Calculateur commission LLD', section: 'lld', anchor: 'lld-calculateur', path: 'LLD > Calculateur', nav: 1 },
-            { title: 'Dashboard LLD', section: 'lld', anchor: 'lld-dashboard', path: 'LLD > Dashboard', nav: 1 },
-            { title: 'Assurance Vol', section: 'assurance', path: 'Assurance', nav: 3 },
-            { title: 'Options d\'assurance', section: 'assurance', anchor: 'assurance-options', path: 'Assurance > Options', nav: 3 },
-            { title: 'Calculateur commission assurance', section: 'assurance', anchor: 'assurance-calculateur', path: 'Assurance > Calculateur', nav: 3 },
-            { title: 'Abonnement Entretien', section: 'abonnement', path: 'Abonnement', nav: 5 },
-            { title: 'Présentation abonnement', section: 'abonnement', anchor: 'abo-presentation', path: 'Abonnement > Présentation', nav: 5 },
-            { title: 'Calculateur commission abonnement', section: 'abonnement', anchor: 'abo-calculateur', path: 'Abonnement > Calculateur', nav: 5 },
-            { title: 'Partenaires de mobilités', section: 'partenaires', path: 'Partenaires', nav: 7 },
-            { title: 'LeasePlan', section: 'partenaires', anchor: 'part-leaseplan', path: 'Partenaires > LeasePlan', nav: 7 },
-            { title: 'Athlon', section: 'partenaires', anchor: 'part-athlon', path: 'Partenaires > Athlon', nav: 7 },
-            { title: 'Alphabet', section: 'partenaires', anchor: 'part-alphabet', path: 'Partenaires > Alphabet', nav: 7 },
-            { title: 'Reprise de vélos', section: 'reprise', path: 'Reprise', nav: 9 },
-            { title: 'Upway VAE', section: 'reprise', anchor: 'reprise-upway', path: 'Reprise > Upway', nav: 9 },
-            { title: 'Vélos mécaniques', section: 'reprise', anchor: 'reprise-mecaniques', path: 'Reprise > Mécaniques', nav: 9 },
-            { title: 'Click & Collect', section: 'clickcollect', path: 'Click & Collect', nav: 11 },
-            { title: 'Véligo', section: 'clickcollect', anchor: 'cc-veligo', path: 'Click & Collect > Véligo', nav: 11 },
-            { title: 'Upway Click & Collect', section: 'clickcollect', anchor: 'cc-upway', path: 'Click & Collect > Upway', nav: 11 }
-        ];
-
-        // Toggle sidebar
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const mainContent = document.getElementById('mainContent');
-            const topHeader = document.getElementById('topHeader');
-            
-            sidebar.classList.toggle('expanded');
-            mainContent.classList.toggle('expanded');
-            topHeader.classList.toggle('expanded');
-        }
-
-        // Recherche live
-        const searchInput = document.getElementById('searchInput');
-        const searchResults = document.getElementById('searchResults');
-
-        searchInput.addEventListener('input', function() {
-            const query = this.value.toLowerCase().trim();
-            
-            if (query.length < 2) {
-                searchResults.classList.remove('show');
-                return;
-            }
-
-            const results = searchData.filter(item => 
-                item.title.toLowerCase().includes(query) || 
-                item.path.toLowerCase().includes(query)
-            );
-
-            if (results.length === 0) {
-                searchResults.innerHTML = '<div class="search-result-item">Aucun résultat trouvé</div>';
-                searchResults.classList.add('show');
-                return;
-            }
-
-            searchResults.innerHTML = results.map(item => `
-                <div class="search-result-item" onclick="navigateToResult('${item.section}', '${item.anchor || ''}', ${item.nav})">
-                    <div class="search-result-title">${item.title}</div>
-                    <div class="search-result-path">${item.path}</div>
-                </div>
-            `).join('');
-            
-            searchResults.classList.add('show');
-        });
-
-        // Fermer les résultats si on clique ailleurs
-        document.addEventListener('click', function(e) {
-            if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
-                searchResults.classList.remove('show');
-            }
-        });
-
-        // Navigation depuis les résultats de recherche
-        function navigateToResult(section, anchor, navIndex) {
-            searchResults.classList.remove('show');
-            searchInput.value = '';
-            
-            const navLinks = document.querySelectorAll('.nav-link');
-            if (navIndex !== null && navLinks[navIndex]) {
-                showSection(section, navLinks[navIndex]);
-            } else {
-                showSection(section, null);
-            }
-            
-            if (anchor) {
-                setTimeout(() => {
-                    scrollToAnchor(anchor);
-                }, 100);
-            }
-        }
-
         function showSection(id, el) {
             document.querySelectorAll('.section-page').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
             document.querySelectorAll('.sub-nav').forEach(s => s.style.display = 'none');
             document.getElementById(id).classList.add('active');
-            if (el) {
-                el.classList.add('active');
-                const subNav = el.nextElementSibling;
-                if (subNav && subNav.classList.contains('sub-nav')) {
-                    subNav.style.display = 'block';
-                }
+            el.classList.add('active');
+            const subNav = el.nextElementSibling;
+            if (subNav && subNav.classList.contains('sub-nav')) {
+                subNav.style.display = 'block';
             }
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
@@ -1522,48 +1410,21 @@
         function updateCalcLld() {
             const mois = parseInt(inputCalcMoisLld.value);
             const loyer = parseFloat(inputCalcLoyerLld.value);
-            const totalLoyers = mois * loyer;
-            const commission = totalLoyers * 0.10;
-            calcResultLld.innerHTML = `<p class="text-lg font-bold text-green-700 dark:text-green-300">Commission brut estimée : ${commission.toFixed(2)} € HT</p>
-            <p class="text-sm text-slate-600 dark:text-slate-400 mt-2">Calcul : ${mois} mois × ${loyer.toFixed(2)} € × 10% = ${commission.toFixed(2)} €</p>`;
-            calcResultLld.classList.remove('hidden');
+            if (!isNaN(mois) && !isNaN(loyer)) {
+                const res = mois * 0.02 * (loyer / 1.2);
+                calcResultLld.innerText = res.toFixed(2) + ' € brut';
+            } else {
+                calcResultLld.innerText = '0.00 € brut';
+            }
         }
 
-        const inputCalcPrixAssurance = document.getElementById('calc-prix-assurance');
-        const selectCalcOptionAssurance = document.getElementById('calc-option-assurance');
-        const calcResultAssurance = document.getElementById('calc-result-assurance');
+        inputCalcMoisLld.addEventListener('change', updateCalcLld);
+        inputCalcLoyerLld.addEventListener('input', updateCalcLld);
 
-        function updateCalcAssurance() {
-            const prix = parseFloat(inputCalcPrixAssurance.value);
-            const tauxOption = parseInt(selectCalcOptionAssurance.value);
-            const montantAssurance = prix * (tauxOption / 100);
-            const commission = montantAssurance * 0.30;
-            calcResultAssurance.innerHTML = `<p class="text-lg font-bold text-purple-700 dark:text-purple-300">Commission estimée : ${commission.toFixed(2)} € HT</p>
-            <p class="text-sm text-slate-600 dark:text-slate-400 mt-2">Calcul : ${prix.toFixed(2)} € × ${tauxOption}% × 30% = ${commission.toFixed(2)} €</p>`;
-            calcResultAssurance.classList.remove('hidden');
+        function openModal(src) {
+            document.getElementById('modalImg').src = src;
+            document.getElementById('imgModal').style.display = 'flex';
         }
-
-        const selectCalcTypeAbo = document.getElementById('calc-type-abo');
-        const inputCalcNbAbo = document.getElementById('calc-nb-abo');
-        const calcResultAbo = document.getElementById('calc-result-abo');
-
-        function updateCalcAbo() {
-            const prixAbo = parseInt(selectCalcTypeAbo.value);
-            const nb = parseInt(inputCalcNbAbo.value);
-            const totalVente = prixAbo * nb;
-            const commission = totalVente * 0.25;
-            calcResultAbo.innerHTML = `<p class="text-lg font-bold text-blue-700 dark:text-blue-300">Commission estimée : ${commission.toFixed(2)} € HT</p>
-            <p class="text-sm text-slate-600 dark:text-slate-400 mt-2">Calcul : ${nb} × ${prixAbo} € × 25% = ${commission.toFixed(2)} €</p>`;
-            calcResultAbo.classList.remove('hidden');
-        }
-
-        document.querySelectorAll('.img-zoom').forEach(img => {
-            img.addEventListener('click', function() {
-                document.getElementById('imgModal').style.display = 'flex';
-                document.getElementById('modalImg').src = this.src;
-            });
-        });
     </script>
-
 </body>
 </html>
