@@ -25,20 +25,36 @@
         body { font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.7; }
         h1, h2, h3, h4, h5 { font-family: 'Montserrat', sans-serif; text-transform: uppercase; }
 
-        .sidebar { width: 300px; position: fixed; height: 100vh; background: #fff; border-right: 1px solid #e2e8f0; z-index: 50; display: flex; flex-direction: column; justify-content: space-between; }
+        /* Header */
+        .header { position: fixed; top: 0; left: 0; right: 0; height: 70px; background: #fff; border-bottom: 1px solid #e2e8f0; z-index: 100; display: flex; align-items: center; padding: 0 20px; gap: 20px; }
+        .dark .header { background: #112240; border-bottom-color: #233554; }
+        .header-logo { height: 45px; cursor: pointer; }
+        
+        /* Sidebar */
+        .sidebar { width: 80px; position: fixed; height: calc(100vh - 70px); top: 70px; background: #fff; border-right: 1px solid #e2e8f0; z-index: 50; display: flex; flex-direction: column; transition: width 0.3s ease; overflow: hidden; }
+        .sidebar.expanded { width: 300px; }
         .dark .sidebar { background: #112240; border-right-color: #233554; }
-        .main-content { margin-left: 300px; padding: 40px; max-width: 1400px; }
+        .main-content { margin-left: 80px; margin-top: 70px; padding: 40px; max-width: 1400px; transition: margin-left 0.3s ease; }
+        .sidebar.expanded ~ .main-content { margin-left: 300px; }
 
-        .nav-link { padding: 12px 20px; display: flex; align-items: center; cursor: pointer; font-weight: 700; font-size: 14px; color: #475569; transition: 0.2s; border-left: 4px solid transparent; text-transform: uppercase; letter-spacing: 0.03em; }
+        .nav-link { padding: 16px 0; display: flex; align-items: center; justify-content: center; cursor: pointer; font-weight: 700; font-size: 14px; color: #475569; transition: 0.2s; border-left: 4px solid transparent; text-transform: uppercase; letter-spacing: 0.03em; position: relative; }
+        .sidebar.expanded .nav-link { padding: 12px 20px; justify-content: flex-start; }
+        .nav-link .nav-text { display: none; margin-left: 8px; }
+        .sidebar.expanded .nav-link .nav-text { display: inline; }
         .nav-link:hover { background: #f8fafc; color: #E65A28; }
         .nav-link.active { background: #eff6ff; color: #E65A28; border-left-color: #E65A28; }
         .dark .nav-link { color: #94a3b8; }
         .dark .nav-link:hover { background: #1e293b; color: #E65A28; }
         .dark .nav-link.active { background: rgba(230, 90, 40, 0.1); }
+        
+        /* Burger button */
+        .burger-btn { position: fixed; top: 20px; left: 20px; z-index: 110; background: #003366; color: white; border: none; padding: 10px 14px; border-radius: 8px; cursor: pointer; font-size: 18px; transition: 0.3s; }
+        .burger-btn:hover { background: #E65A28; }
 
         .sub-nav { display: none; background: #f8fafc; border-left: 4px solid #e2e8f0; }
         .dark .sub-nav { background: #0d1f3c; border-left-color: #233554; }
-        .nav-link.active + .sub-nav { display: block; }
+        .sidebar:not(.expanded) .sub-nav { display: none !important; }
+        .sidebar.expanded .nav-link.active + .sub-nav { display: block; }
         .sub-nav-link { padding: 8px 16px 8px 32px; display: flex; align-items: center; cursor: pointer; font-size: 13px; font-weight: 500; color: #64748b; transition: 0.15s; font-family: 'Inter', sans-serif; text-transform: none; letter-spacing: 0; }
         .sub-nav-link:hover { color: #E65A28; background: #fff; }
         .dark .sub-nav-link { color: #94a3b8; }
@@ -87,6 +103,50 @@
         .dark .option-featured {
             box-shadow: 0 20px 50px rgba(79, 172, 254, 0.2), 0 0 0 3px #4facfe;
         }
+        
+        /* Search bar */
+        .search-bar { flex: 1; max-width: 600px; position: relative; }
+        .search-input { width: 100%; padding: 12px 45px 12px 20px; border: 1px solid #e2e8f0; border-radius: 10px; font-size: 15px; transition: 0.2s; }
+        .dark .search-input { background: #1e293b; border-color: #334155; color: #e6f1ff; }
+        .search-input:focus { outline: none; border-color: #E65A28; box-shadow: 0 0 0 3px rgba(230, 90, 40, 0.1); }
+        .search-icon { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: #94a3b8; }
+        .search-results { position: absolute; top: 100%; left: 0; right: 0; background: white; border: 1px solid #e2e8f0; border-radius: 10px; margin-top: 8px; max-height: 400px; overflow-y: auto; display: none; box-shadow: 0 10px 40px rgba(0,0,0,0.1); z-index: 1000; }
+        .dark .search-results { background: #112240; border-color: #233554; }
+        .search-results.active { display: block; }
+        .search-result-item { padding: 12px 20px; cursor: pointer; border-bottom: 1px solid #f1f5f9; transition: 0.15s; }
+        .dark .search-result-item { border-bottom-color: #1e293b; }
+        .search-result-item:hover { background: #f8fafc; color: #E65A28; }
+        .dark .search-result-item:hover { background: #1e293b; }
+        .search-result-item:last-child { border-bottom: none; }
+        .search-no-results { padding: 20px; text-align: center; color: #94a3b8; }
+        
+        /* Home tiles */
+        .home-tile { background: white; border-radius: 16px; padding: 32px; border: 1px solid #e2e8f0; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); text-decoration: none; display: block; }
+        .dark .home-tile { background: #112240; border-color: #233554; }
+        .home-tile:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.12); border-color: #E65A28; }
+        .home-tile-icon { font-size: 48px; color: #003366; margin-bottom: 20px; }
+        .dark .home-tile-icon { color: #4facfe; }
+        .home-tile:hover .home-tile-icon { color: #E65A28; }
+        .home-tile-title { font-size: 20px; font-weight: 800; color: #003366; margin-bottom: 12px; text-transform: uppercase; }
+        .dark .home-tile-title { color: white; }
+        .home-tile-desc { font-size: 14px; color: #64748b; line-height: 1.6; }
+        .dark .home-tile-desc { color: #94a3b8; }
+        
+        /* Partner cards */
+        .partner-card { background: white; border-radius: 16px; padding: 32px; border: 2px solid #e2e8f0; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+        .dark .partner-card { background: #112240; border-color: #233554; }
+        .partner-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: linear-gradient(90deg, #003366, #E65A28); transform: scaleX(0); transition: transform 0.4s ease; transform-origin: left; }
+        .partner-card:hover { transform: translateY(-12px) scale(1.02); box-shadow: 0 25px 50px rgba(0,0,0,0.15); border-color: #E65A28; }
+        .partner-card:hover::before { transform: scaleX(1); }
+        .partner-card-logo { height: 60px; object-fit: contain; margin-bottom: 24px; transition: transform 0.3s ease; }
+        .partner-card:hover .partner-card-logo { transform: scale(1.1); }
+        .partner-card-title { font-size: 24px; font-weight: 800; color: #003366; margin-bottom: 16px; text-transform: uppercase; }
+        .dark .partner-card-title { color: white; }
+        
+        /* Sidebar contact */
+        .sidebar-contact { display: none; padding: 20px; background: #f8fafc; border-top: 1px solid #e2e8f0; margin-top: auto; }
+        .sidebar.expanded .sidebar-contact { display: block; }
+        .dark .sidebar-contact { background: #0d1f3c; border-top-color: #233554; }
     </style>
 </head>
 <body class="bg-slate-50 dark:bg-hb-dark-bg text-slate-800 dark:text-hb-dark-text">
@@ -100,17 +160,27 @@
         <i class="fas fa-sun hidden dark:block text-yellow-400 text-xl"></i>
     </button>
 
-    <aside class="sidebar overflow-y-auto">
-        <div>
-            <div class="p-6 border-b dark:border-slate-800 text-center">
-                <img src="Logo HB_v1_Bleu.jpg" class="w-full max-w-[180px] mx-auto dark:hidden" alt="Holland Bikes">
-                <img src="Logo HB_v1_Blanc.png" class="w-full max-w-[180px] mx-auto hidden dark:block" alt="Holland Bikes">
-            </div>
-            <nav class="mt-2">
+    <!-- Header -->
+    <header class="header">
+        <button class="burger-btn" onclick="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </button>
+        <img src="Logo HB_v1_Bleu.jpg" class="header-logo dark:hidden" alt="Holland Bikes" onclick="showSection('home', null)">
+        <img src="Logo HB_v1_Blanc.png" class="header-logo hidden dark:block" alt="Holland Bikes" onclick="showSection('home', null)">
+        <div class="search-bar">
+            <input type="text" class="search-input" id="searchInput" placeholder="Rechercher une section ou une page..." autocomplete="off">
+            <i class="fas fa-search search-icon"></i>
+            <div class="search-results" id="searchResults"></div>
+        </div>
+    </header>
+
+    <aside class="sidebar" id="sidebar">
+            <nav class="mt-2 flex-1 overflow-y-auto">
 
                 <!-- LLD -->
                 <div class="nav-link active" onclick="showSection('lld', this)">
-                    <i class="fas fa-file-invoice-dollar w-7 text-center mr-2"></i> Location Longue Durée
+                    <i class="fas fa-file-invoice-dollar text-2xl"></i>
+                    <span class="nav-text">Location Longue Durée</span>
                 </div>
                 <div class="sub-nav">
                     <div class="sub-nav-link" onclick="scrollToAnchor('lld-greenleaze')"><i class="fas fa-circle-dot"></i> GreenLeaze</div>
@@ -122,7 +192,8 @@
 
                 <!-- Abonnement Entretien -->
                 <div class="nav-link" onclick="showSection('abo', this)">
-                    <i class="fas fa-tools w-7 text-center mr-2"></i> Abonnement Entretien
+                    <i class="fas fa-tools text-2xl"></i>
+                    <span class="nav-text">Abonnement Entretien</span>
                 </div>
                 <div class="sub-nav">
                     <div class="sub-nav-link" onclick="scrollToAnchor('abo-presentation')"><i class="fas fa-circle-dot"></i> Présentation & tarifs</div>
@@ -136,7 +207,8 @@
 
                 <!-- Assurance -->
                 <div class="nav-link" onclick="showSection('assurance', this)">
-                    <i class="fas fa-shield-alt w-7 text-center mr-2"></i> Assurance
+                    <i class="fas fa-shield-alt text-2xl"></i>
+                    <span class="nav-text">Assurance</span>
                 </div>
                 <div class="sub-nav">
                     <div class="sub-nav-link" onclick="scrollToAnchor('ass-4mois')"><i class="fas fa-circle-dot"></i> Assurance 4 mois offerte</div>
@@ -148,7 +220,8 @@
 
                 <!-- Partenaires -->
                 <div class="nav-link" onclick="showSection('partenaires', this)">
-                    <i class="fas fa-handshake w-7 text-center mr-2"></i> Partenaires de Mobilités
+                    <i class="fas fa-handshake text-2xl"></i>
+                    <span class="nav-text">Partenaires de Mobilités</span>
                 </div>
                 <div class="sub-nav">
                     <div class="sub-nav-link" onclick="scrollToAnchor('part-zenride')"><i class="fas fa-circle-dot"></i> Zenride</div>
@@ -159,7 +232,8 @@
 
                 <!-- Reprise vélo -->
                 <div class="nav-link" onclick="showSection('reprise', this)">
-                    <i class="fas fa-sync w-7 text-center mr-2"></i> Reprise vélo
+                    <i class="fas fa-sync text-2xl"></i>
+                    <span class="nav-text">Reprise vélo</span>
                 </div>
                 <div class="sub-nav">
                     <div class="sub-nav-link" onclick="scrollToAnchor('rep-electrique')"><i class="fas fa-circle-dot"></i> Vélos électriques (Upway)</div>
@@ -168,7 +242,8 @@
 
                 <!-- Click & Collect -->
                 <div class="nav-link" onclick="showSection('clickcollect', this)">
-                    <i class="fas fa-box-open w-7 text-center mr-2"></i> Click &amp; Collect
+                    <i class="fas fa-box-open text-2xl"></i>
+                    <span class="nav-text">Click & Collect</span>
                 </div>
                 <div class="sub-nav">
                     <div class="sub-nav-link" onclick="scrollToAnchor('cc-veligo')"><i class="fas fa-circle-dot"></i> Véligo</div>
@@ -176,19 +251,62 @@
                 </div>
 
             </nav>
-        </div>
-        <div class="p-5 bg-slate-100 dark:bg-slate-800 border-t dark:border-slate-700 m-3 rounded-xl">
-            <p class="font-bold text-base mb-2 text-hb-blue dark:text-white">Contact :</p>
-            <a href="mailto:bruno.buisson@hollandbikes.com" class="flex items-center text-hb-orange hover:underline mb-2 font-medium text-sm break-all">
-                <i class="fas fa-envelope mr-2"></i> bruno.buisson@hollandbikes.com
-            </a>
-            <a href="tel:+33685269576" class="flex items-center text-hb-orange hover:underline font-medium text-sm">
-                <i class="fas fa-phone mr-2"></i> +33 6 85 26 95 76
-            </a>
-        </div>
+            <div class="sidebar-contact">
+                <p class="font-bold text-base mb-2 text-hb-blue dark:text-white">Contact :</p>
+                <a href="/cdn-cgi/l/email-protection#a2c0d0d7cccd8cc0d7cbd1d1cdcce2cacdcecec3ccc6c0cbc9c7d18cc1cdcf" class="flex items-center text-hb-orange hover:underline mb-2 font-medium text-sm break-all">
+                    <i class="fas fa-envelope mr-2"></i> <span class="__cf_email__" data-cfemail="6a08181f040544081f03191905042a020506060b040e0803010f1944090507">[email&#160;protected]</span>
+                </a>
+                <a href="tel:+33685269576" class="flex items-center text-hb-orange hover:underline font-medium text-sm">
+                    <i class="fas fa-phone mr-2"></i> +33 6 85 26 95 76
+                </a>
+            </div>
     </aside>
 
     <main class="main-content">
+
+        <!-- =============================== HOME =============================== -->
+        <section id="home" class="section-page">
+            <h1 class="text-4xl font-black mb-8 text-hb-blue dark:text-white">Dashboard Services Holland Bikes 2026</h1>
+            <p class="text-xl mb-12 text-slate-600 dark:text-slate-400">Bienvenue sur votre tableau de bord. Sélectionnez une section pour commencer :</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="home-tile" onclick="showSectionFromHome('lld')">
+                    <i class="fas fa-file-invoice-dollar home-tile-icon"></i>
+                    <h3 class="home-tile-title">Location Longue Durée</h3>
+                    <p class="home-tile-desc">GreenLeaze, argumentaires de vente, forfaits révision, procédures et facturation</p>
+                </div>
+                
+                <div class="home-tile" onclick="showSectionFromHome('abo')">
+                    <i class="fas fa-tools home-tile-icon"></i>
+                    <h3 class="home-tile-title">Abonnement Entretien</h3>
+                    <p class="home-tile-desc">Présentation, tarifs, prestations incluses, process Stripe et argumentaire commercial</p>
+                </div>
+                
+                <div class="home-tile" onclick="showSectionFromHome('assurance')">
+                    <i class="fas fa-shield-alt home-tile-icon"></i>
+                    <h3 class="home-tile-title">Assurance</h3>
+                    <p class="home-tile-desc">Assurance 4 mois offerte, prolongations, extensions et assurance mensuelle Laka</p>
+                </div>
+                
+                <div class="home-tile" onclick="showSectionFromHome('partenaires')">
+                    <i class="fas fa-handshake home-tile-icon"></i>
+                    <h3 class="home-tile-title">Partenaires de Mobilités</h3>
+                    <p class="home-tile-desc">Zenride, Lease a Bike, BeeToGreen et cartes de mobilités</p>
+                </div>
+                
+                <div class="home-tile" onclick="showSectionFromHome('reprise')">
+                    <i class="fas fa-sync home-tile-icon"></i>
+                    <h3 class="home-tile-title">Reprise vélo</h3>
+                    <p class="home-tile-desc">Procédures de reprise pour vélos électriques (Upway) et mécaniques</p>
+                </div>
+                
+                <div class="home-tile" onclick="showSectionFromHome('clickcollect')">
+                    <i class="fas fa-box-open home-tile-icon"></i>
+                    <h3 class="home-tile-title">Click & Collect</h3>
+                    <p class="home-tile-desc">Services Véligo et Upway, procédures et opportunités commerciales</p>
+                </div>
+            </div>
+        </section>
 
         <!-- =============================== LLD =============================== -->
         <section id="lld" class="section-page active">
@@ -231,15 +349,26 @@
             </div>
 
             <span class="anchor" id="lld-argumentaire"></span>
-            <div class="card shadow-lg">
-                <h4 class="font-bold text-xl mb-5">Argumentaire de vente :</h4>
-                <select class="w-full p-3 border-2 border-slate-300 rounded-lg mb-5 bg-slate-50 dark:bg-slate-800 dark:border-slate-600 text-lg font-bold cursor-pointer" onchange="document.getElementById('arg-content-lld').innerHTML = this.value">
-                    <option value="" disabled selected>Sélectionnez un profil...</option>
-                    <option value="<h5 class='text-xl font-bold mb-3 text-hb-blue'>Comment le vendre à un client particulier :</h5><ul class='list-disc ml-6 space-y-3 text-lg'><li>Simple et rapide : souscription en ~5 minutes, sans paperasse</li><li>Un package tout compris avec entretien, assistance, casse/vol</li><li>Engagement au choix : 12 / 24 / 36 mois selon votre besoin</li><li>Aides employeur possibles : si vous vélotaffez, vous pouvez profiter des dispositifs type Forfait Mobilités Durables (selon l'entreprise) pour alléger votre coût</li></ul>">Comment le vendre à : Un client particulier</option>
-                    <option value="<h5 class='text-xl font-bold mb-3 text-hb-orange'>Comment le vendre à un passionné de vélo :</h5><ul class='list-disc ml-6 space-y-3 text-lg'><li>Simple et rapide : souscription en ~5 minutes, sans paperasse</li><li>Évolutif : changez de monture selon vos envies et pratiques avec un engagement 12/24/36 mois</li><li>Sérénité : services possibles (entretien, assistance, casse/vol) selon la boutique</li></ul>">Comment le vendre à : Un passionné de vélo</option>
-                </select>
-                <div id="arg-content-lld" class="min-h-[160px] bg-slate-100 dark:bg-slate-900 p-5 rounded-lg border border-slate-200 dark:border-slate-700">
-                    <p class="text-slate-500 italic">Sélectionnez un profil ci-dessus pour afficher l'argumentaire.</p>
+            <div class="card shadow-lg border-l-8 border-hb-blue">
+                <h4 class="font-bold text-2xl mb-6 text-hb-blue dark:text-white">Argumentaire de vente :</h4>
+                
+                <div class="bg-blue-50 dark:bg-slate-900 p-6 rounded-xl border-2 border-blue-200 dark:border-slate-700 mb-5">
+                    <h5 class='text-xl font-bold mb-4 text-hb-blue dark:text-white'>Comment le vendre à un client particulier :</h5>
+                    <ul class='list-disc ml-6 space-y-3 text-lg text-body'>
+                        <li>Simple et rapide : souscription en ~5 minutes, sans paperasse</li>
+                        <li>Un package tout compris avec entretien, assistance, casse/vol</li>
+                        <li>Engagement au choix : 12 / 24 / 36 mois selon votre besoin</li>
+                        <li>Aides employeur possibles : si vous vélotaffez, vous pouvez profiter des dispositifs type Forfait Mobilités Durables (selon l'entreprise) pour alléger votre coût</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-orange-50 dark:bg-slate-900 p-6 rounded-xl border-2 border-orange-200 dark:border-slate-700">
+                    <h5 class='text-xl font-bold mb-4 text-hb-orange'>Comment le vendre à un passionné de vélo :</h5>
+                    <ul class='list-disc ml-6 space-y-3 text-lg text-body'>
+                        <li>Simple et rapide : souscription en ~5 minutes, sans paperasse</li>
+                        <li>Évolutif : changez de monture selon vos envies et pratiques avec un engagement 12/24/36 mois</li>
+                        <li>Sérénité : services possibles (entretien, assistance, casse/vol) selon la boutique</li>
+                    </ul>
                 </div>
             </div>
 
@@ -325,7 +454,7 @@
                 </ul>
 
                 <div class="bg-blue-50 dark:bg-slate-800 p-6 rounded-xl border-2 border-hb-blue dark:border-slate-600 mb-8 shadow-md">
-                    <h5 class="font-black text-xl mb-4 text-hb-blue dark:text-white"><i class="fas fa-calculator mr-2"></i> Calculateur de commission brute vendeur</h5>
+                    <h5 class="font-black text-xl mb-4 text-hb-blue dark:text-white"><i class="fas fa-calculator mr-2"></i> Calculateur de commission brut vendeur</h5>
                     <p class="mb-4 text-base">Commission = Durée (mois) × 2 % × (loyer TTC / 1,2)</p>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-end">
                         <div>
@@ -350,8 +479,8 @@
 
                 <h4 class="font-bold text-lg mb-3 text-hb-orange">3. Envoi de la facture :</h4>
                 <ul class="list-disc ml-7 space-y-2 text-body font-medium">
-                    <li>Dès que le vélo est livré et le contrat validé sur le dashboard, envoyez la facture PDF à l'adresse suivante : <strong>compta+hollandbikes@greenleaze.com</strong></li>
-                    <li>Le Vélopass doit être enregistré au nom de GreenLeaze. Sur Vélopass, vous pouvez utiliser l'adresse e-mail suivante : <strong>identification@greenleaze.com</strong></li>
+                    <li>Dès que le vélo est livré et le contrat validé sur le dashboard, envoyez la facture PDF à l'adresse suivante : <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4e2d21233e3a2f65262122222f202a2c27252b3d0e293c2b2b20222b2f342b602d2123">[email&#160;protected]</a></strong></li>
+                    <li>Le Vélopass doit être enregistré au nom de GreenLeaze. Sur Vélopass, vous pouvez utiliser l'adresse e-mail suivante : <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="264f424348524f404f4547524f49486641544343484a43475c430845494b">[email&#160;protected]</a></strong></li>
                 </ul>
             </div>
         </section>
@@ -790,16 +919,14 @@
         <section id="partenaires" class="section-page">
             <h2 class="text-3xl font-black mb-10 text-hb-blue dark:text-white border-b-4 border-hb-orange inline-block pb-2">Partenaires de mobilités</h2>
 
-            <!-- ✅ CHANGE 4 : Nouvelle disposition — Rangée 1 : BeeToGreen + Lease a Bike | Rangée 2 : Zenride + Cartes -->
-            <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
-                <!-- BeeToGreen — rangée 1, colonne 1 -->
+                <!-- BeeToGreen -->
                 <span class="anchor" id="part-bee"></span>
-                <div class="card p-8 border-l-8 border-green-500 shadow-xl">
-                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 border-b-2 border-slate-100 dark:border-slate-700 pb-5 gap-4">
-                        <img src="Logo BeeToGreen.png" alt="Logo BeeToGreen" class="h-12 object-contain bg-white rounded p-1">
-                        <a href="https://app.beetogreen.com/login" target="_blank" class="btn-hb"><i class="fas fa-desktop mr-2"></i> Dashboard BeeToGreen</a>
-                    </div>
+                <div class="partner-card">
+                    <img src="Logo BeeToGreen.png" alt="Logo BeeToGreen" class="partner-card-logo">
+                    <h3 class="partner-card-title">BeeToGreen</h3>
+                    <a href="https://app.beetogreen.com/login" target="_blank" class="btn-hb mb-4 inline-block"><i class="fas fa-desktop mr-2"></i> Dashboard BeeToGreen</a>
                     <div class="text-base space-y-4 text-body">
                         <p><strong>Présentation :</strong> BeeToGreen est un opérateur de solutions de mobilité durable. Les salariés peuvent acheter ou louer un vélo via leur entreprise.</p>
                         <h4 class="font-black text-base mt-4">Processus :</h4>
@@ -819,13 +946,12 @@
                     </div>
                 </div>
 
-                <!-- Lease a Bike — rangée 1, colonne 2 -->
+                <!-- Lease a Bike -->
                 <span class="anchor" id="part-lease"></span>
-                <div class="card p-8 border-l-8 border-hb-orange shadow-xl">
-                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 border-b-2 border-slate-100 dark:border-slate-700 pb-5 gap-4">
-                        <img src="Logo Lease a Bike.png" alt="Logo Lease a Bike" class="h-12 object-contain bg-white rounded p-1">
-                        <a href="https://fr.mobility-services.bike/app/login" target="_blank" class="btn-hb"><i class="fas fa-desktop mr-2"></i> Dashboard Lease a Bike</a>
-                    </div>
+                <div class="partner-card">
+                    <img src="Logo Lease a Bike.png" alt="Logo Lease a Bike" class="partner-card-logo">
+                    <h3 class="partner-card-title">Lease a Bike</h3>
+                    <a href="https://fr.mobility-services.bike/app/login" target="_blank" class="btn-hb mb-4 inline-block"><i class="fas fa-desktop mr-2"></i> Dashboard Lease a Bike</a>
                     <div class="text-base space-y-4 text-body">
                         <p><strong>Présentation :</strong> Lease a Bike propose une location de vélo via l'entreprise, avec un contrat de 36 mois en général.</p>
                         <h4 class="font-black text-base mt-4">Processus :</h4>
@@ -847,13 +973,12 @@
                     </div>
                 </div>
 
-                <!-- Zenride — rangée 2, colonne 1 -->
+                <!-- Zenride -->
                 <span class="anchor" id="part-zenride"></span>
-                <div class="card p-8 border-l-8 border-hb-blue shadow-xl">
-                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 border-b-2 border-slate-100 dark:border-slate-700 pb-5 gap-4">
-                        <img src="Logo Zenride.png" alt="Logo Zenride" class="h-12 object-contain bg-white rounded p-1">
-                        <a href="https://app.zenride.co/retailer/login" target="_blank" class="btn-hb"><i class="fas fa-desktop mr-2"></i> Dashboard Zenride</a>
-                    </div>
+                <div class="partner-card">
+                    <img src="Logo Zenride.png" alt="Logo Zenride" class="partner-card-logo">
+                    <h3 class="partner-card-title">Zenride</h3>
+                    <a href="https://app.zenride.co/retailer/login" target="_blank" class="btn-hb mb-4 inline-block"><i class="fas fa-desktop mr-2"></i> Dashboard Zenride</a>
                     <div class="text-base space-y-4 text-body">
                         <p><strong>Présentation :</strong> Zenride est une plateforme de location longue durée de vélos financée par l'entreprise du salarié. Le salarié choisit son vélo chez Holland Bikes, mais le client final est Zenride, pas le particulier.</p>
                         <h4 class="font-black text-base mt-4">Processus :</h4>
@@ -861,7 +986,7 @@
                             <li>Le client choisit un vélo en magasin.</li>
                             <li>Le vendeur crée le devis au nom de Zenride (pas du salarié).</li>
                             <li>Ajouter la mention : « Vélo choisi par [nom du salarié] – société [nom de l'entreprise] ».</li>
-                            <li>Envoyer le devis à Zenride via leur plateforme ou par e-mail (souvent : support@zenride.co).</li>
+                            <li>Envoyer le devis à Zenride via leur plateforme ou par e-mail (souvent : <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7f0c0a0f0f100d0b3f051a110d161b1a511c10">[email&#160;protected]</a>).</li>
                             <li>Attendre la validation et le bon de commande Zenride avant toute livraison.</li>
                             <li>À réception du bon : établir la facture à Zenride et livrer le vélo au salarié (avec signature du bon de livraison).</li>
                         </ol>
@@ -877,13 +1002,11 @@
                     </div>
                 </div>
 
-                <!-- Cartes de mobilités — rangée 2, colonne 2 -->
+                <!-- Cartes de mobilités -->
                 <span class="anchor" id="part-cartes"></span>
-                <div class="card p-8 border-l-8 border-purple-500 shadow-xl">
-                    <div class="mb-6 border-b-2 border-slate-100 dark:border-slate-700 pb-5">
-                        <h3 class="text-xl font-black">Cartes de mobilités</h3>
-                        <p class="text-sm text-slate-500 font-medium mt-1">Edenred, SNCF Mon Sesam (Tesmo), Betterway</p>
-                    </div>
+                <div class="partner-card">
+                    <h3 class="partner-card-title" style="margin-bottom: 8px;">Cartes de mobilités</h3>
+                    <p class="text-sm text-slate-500 font-medium mb-6">Edenred, SNCF Mon Sesam (Tesmo), Betterway</p>
                     <div class="text-base space-y-4 text-body">
                         <p><strong>Présentation :</strong> Les cartes de mobilités permettent aux salariés de payer leur achat de vélo ou d'équipement lié à la mobilité durable. Chez Holland Bikes, nous travaillons avec Edenred, SNCF MonSesam et Betterway.</p>
                         <h4 class="font-black text-base mt-4">Processus :</h4>
@@ -978,6 +1101,10 @@
                         </div>
                         <p><strong class="text-hb-blue dark:text-white">Offre de conversion :</strong><br>Proposer dès le premier contact un casque et un antivol offerts pour tout achat d'un vélo en magasin faisant suite à une location Véligo.</p>
 
+                        <div class="bg-blue-50 dark:bg-slate-800 p-5 rounded-xl mt-4 border-l-4 border-hb-blue">
+                            <p><strong class="text-hb-blue dark:text-white">Le levier LLD :</strong><br>Pour les clients Véligo, présentez la LLD GreenLeaze comme la suite logique pour bénéficier d'un vélo neuf avec la même liberté.</p>
+                        </div>
+
                         <div class="bg-slate-100 dark:bg-slate-800 p-5 rounded-xl mt-4">
                             <p class="font-black text-lg mb-4">Procédures PDF :</p>
                             <div class="flex flex-col sm:flex-row gap-4">
@@ -1003,9 +1130,6 @@
                         <p><strong class="text-hb-orange">Prestation logistique :</strong><br>Le forfait de 42 € couvre le déballage, la mise en service (montage des pédales, réglage du guidon) et l'explication du fonctionnement au client.</p>
                         <p><strong class="text-hb-orange">Ventes additionnelles :</strong><br>Profitez du retrait pour proposer des accessoires (antivol, casque, sacoches).</p>
                         <p><strong class="text-hb-orange">Fidélisation :</strong><br>Proposer systématiquement l'Abonnement Entretien (indispensable sur de l'occasion) et une révision sécurité offerte sous 3 mois pour créer une fiche client dans CycleSoftware.</p>
-                        <div class="bg-orange-50 dark:bg-slate-800 p-5 rounded-xl mt-4 border-l-4 border-hb-orange">
-                            <p><strong class="text-hb-orange">Le levier LLD :</strong><br>Pour les clients Upway/Véligo, présentez la LLD GreenLeaze comme la suite logique pour bénéficier d'un vélo neuf avec la même liberté.</p>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -1013,7 +1137,7 @@
 
     </main>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         function showSection(id, el) {
             document.querySelectorAll('.section-page').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
@@ -1052,21 +1176,136 @@
         function updateCalcLld() {
             const mois = parseInt(inputCalcMoisLld.value);
             const loyer = parseFloat(inputCalcLoyerLld.value);
-            if (!isNaN(mois) && !isNaN(loyer)) {
-                const res = mois * 0.02 * (loyer / 1.2);
-                calcResultLld.innerText = res.toFixed(2) + ' € brut';
-            } else {
-                calcResultLld.innerText = '0.00 € brut';
+            if (isNaN(mois) || isNaN(loyer) || loyer <= 0) {
+                calcResultLld.textContent = '0.00 € brut';
+                return;
+            }
+            const commission = mois * 0.02 * (loyer / 1.2);
+            calcResultLld.textContent = commission.toFixed(2) + ' € brut';
+        }
+
+        if (inputCalcMoisLld) inputCalcMoisLld.addEventListener('change', updateCalcLld);
+        if (inputCalcLoyerLld) inputCalcLoyerLld.addEventListener('input', updateCalcLld);
+
+        function openModal(imgSrc) {
+            const modal = document.getElementById('imgModal');
+            const modalImg = document.getElementById('modalImg');
+            modalImg.src = imgSrc;
+            modal.style.display = 'flex';
+        }
+
+        // Toggle sidebar
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('expanded');
+        }
+
+        // Show section from home tiles
+        function showSectionFromHome(sectionId) {
+            const navLink = document.querySelector(`.nav-link[onclick*="'${sectionId}'"]`);
+            if (navLink) {
+                showSection(sectionId, navLink);
             }
         }
 
-        inputCalcMoisLld.addEventListener('change', updateCalcLld);
-        inputCalcLoyerLld.addEventListener('input', updateCalcLld);
+        // Search functionality
+        const searchData = [
+            { name: 'Location Longue Durée', section: 'lld', keywords: 'lld location longue durée greenleaze leasing' },
+            { name: 'GreenLeaze', section: 'lld', anchor: 'lld-greenleaze', keywords: 'greenleaze leasing location' },
+            { name: 'Argumentaire LLD', section: 'lld', anchor: 'lld-argumentaire', keywords: 'argumentaire vente lld' },
+            { name: 'Forfaits révision LLD', section: 'lld', anchor: 'lld-forfaits', keywords: 'forfait révision entretien' },
+            { name: 'Procédure de vente LLD', section: 'lld', anchor: 'lld-procedure-vente', keywords: 'procédure vente dashboard' },
+            { name: 'Facturation CycleSoftware', section: 'lld', anchor: 'lld-facturation', keywords: 'facturation cyclesoftware commission' },
+            { name: 'Abonnement Entretien', section: 'abo', keywords: 'abonnement entretien maintenance révision' },
+            { name: 'Présentation abonnement', section: 'abo', anchor: 'abo-presentation', keywords: 'présentation tarifs prix' },
+            { name: 'Prestations incluses', section: 'abo', anchor: 'abo-prestations', keywords: 'prestations incluses services' },
+            { name: 'Conditions éligibilité', section: 'abo', anchor: 'abo-eligibilite', keywords: 'éligibilité conditions' },
+            { name: 'Rôles & responsabilités', section: 'abo', anchor: 'abo-roles', keywords: 'rôles responsabilités' },
+            { name: 'Process Stripe', section: 'abo', anchor: 'abo-stripe', keywords: 'stripe process paiement' },
+            { name: 'Vérification Stripe', section: 'abo', anchor: 'abo-verification', keywords: 'vérification stripe contrôle' },
+            { name: 'Argumentaire abonnement', section: 'abo', anchor: 'abo-argumentaire', keywords: 'argumentaire commercial vente' },
+            { name: 'Assurance', section: 'assurance', keywords: 'assurance vol casse protection' },
+            { name: 'Assurance 4 mois offerte', section: 'assurance', anchor: 'ass-4mois', keywords: '4 mois offerte gratuit' },
+            { name: 'Prolonger assurance', section: 'assurance', anchor: 'ass-prolonger', keywords: 'prolonger extension' },
+            { name: 'Extension 1-2 ans', section: 'assurance', anchor: 'ass-extension', keywords: 'extension 1 2 ans' },
+            { name: 'Assurance Laka', section: 'assurance', anchor: 'ass-laka', keywords: 'laka mensuelle' },
+            { name: 'Comparatif assurances', section: 'assurance', anchor: 'ass-comparatif', keywords: 'comparatif tableau' },
+            { name: 'Partenaires de mobilités', section: 'partenaires', keywords: 'partenaires mobilité zenride lease beetogreen' },
+            { name: 'Zenride', section: 'partenaires', anchor: 'part-zenride', keywords: 'zenride' },
+            { name: 'Lease a Bike', section: 'partenaires', anchor: 'part-lease', keywords: 'lease bike' },
+            { name: 'BeeToGreen', section: 'partenaires', anchor: 'part-bee', keywords: 'beetogreen bee' },
+            { name: 'Cartes de mobilités', section: 'partenaires', anchor: 'part-cartes', keywords: 'cartes mobilité edenred tesmo betterway' },
+            { name: 'Reprise vélo', section: 'reprise', keywords: 'reprise vélo upway' },
+            { name: 'Vélos électriques Upway', section: 'reprise', anchor: 'rep-electrique', keywords: 'électrique upway vae' },
+            { name: 'Vélos mécaniques', section: 'reprise', anchor: 'rep-mecanique', keywords: 'mécanique musculaire' },
+            { name: 'Click & Collect', section: 'clickcollect', keywords: 'click collect véligo upway' },
+            { name: 'Véligo', section: 'clickcollect', anchor: 'cc-veligo', keywords: 'véligo' },
+            { name: 'Upway', section: 'clickcollect', anchor: 'cc-upway', keywords: 'upway' }
+        ];
 
-        function openModal(src) {
-            document.getElementById('modalImg').src = src;
-            document.getElementById('imgModal').style.display = 'flex';
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+
+        searchInput.addEventListener('input', function() {
+            const query = this.value.toLowerCase().trim();
+            
+            if (query.length < 2) {
+                searchResults.classList.remove('active');
+                searchResults.innerHTML = '';
+                return;
+            }
+
+            const results = searchData.filter(item => 
+                item.name.toLowerCase().includes(query) || 
+                item.keywords.toLowerCase().includes(query)
+            ).slice(0, 8);
+
+            if (results.length === 0) {
+                searchResults.innerHTML = '<div class="search-no-results">Aucun résultat trouvé</div>';
+                searchResults.classList.add('active');
+                return;
+            }
+
+            searchResults.innerHTML = results.map(item => `
+                <div class="search-result-item" onclick="navigateToResult('${item.section}', '${item.anchor || ''}')">
+                    <i class="fas fa-arrow-right mr-2"></i> ${item.name}
+                </div>
+            `).join('');
+            searchResults.classList.add('active');
+        });
+
+        function navigateToResult(section, anchor) {
+            const navLink = document.querySelector(`.nav-link[onclick*="'${section}'"]`);
+            if (navLink) {
+                showSection(section, navLink);
+                if (anchor) {
+                    setTimeout(() => scrollToAnchor(anchor), 300);
+                }
+            }
+            searchInput.value = '';
+            searchResults.classList.remove('active');
+            searchResults.innerHTML = '';
         }
+
+        // Close search results when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+                searchResults.classList.remove('active');
+            }
+        });
+
+        // Initialize - show home on first load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if we should show home
+            const urlHash = window.location.hash;
+            if (!urlHash || urlHash === '#home') {
+                document.querySelectorAll('.section-page').forEach(s => s.classList.remove('active'));
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                const homeSection = document.getElementById('home');
+                if (homeSection) {
+                    homeSection.classList.add('active');
+                }
+            }
+        });
     </script>
 </body>
 </html>
